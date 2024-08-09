@@ -1,5 +1,5 @@
 package com.klondike_solitaire;
 
-public class Suit {
+public enum Suit {
     Spades,Hearts,Clubs,Diamonds;
 }

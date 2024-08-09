@@ -85,4 +85,48 @@ public class Card {
     public boolean isFaceUp(){
         return faceUp;
     }
+
+    public Colour getColour() {
+        return colour;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return value + " of " + suit ;
+    }
+
+    public static Image getFoundationBase(int suit) {
+        ImageIcon ii = new ImageIcon(
+                Card.class.getResource(directory + "/" + fpBaseFilename + suit + extension));
+        Image image = ii.getImage();
+        return image;
+    }
+
+    public static Image getCardOutline() {
+        ImageIcon ii = new ImageIcon(
+                Card.class.getResource(directory + "/" + cardOutlineFilename + extension));
+        Image image = ii.getImage();
+        return image;
+    }
+
+    public static Image getCardBack() {
+        ImageIcon ii = new ImageIcon(
+                Card.class.getResource(directory + "/" + cardBackFilename + extension));
+        Image image = ii.getImage();
+        return image;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public String getSuit() {
+        return suit;
+    }
+
+    public void showFace() {
+        faceUp = true;
+    }
 }
