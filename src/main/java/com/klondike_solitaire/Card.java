@@ -1,5 +1,6 @@
 package com.klondike_solitaire;
 
+<<<<<<< HEAD
 import java.awt.*;
 import javax.swing.*;
 
@@ -120,3 +121,7 @@ public class Card {
     }
 
 }
+=======
+public class Card {
+}
+>>>>>>> dc53f3ebabfa848812a045a82ea9a0ce0703994e
