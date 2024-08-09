@@ -10,6 +10,5 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         g.setColor(Color.GREEN);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        System.out.println("commit");
     }
 }
