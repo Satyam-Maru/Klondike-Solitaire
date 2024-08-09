@@ -1,4 +1,4 @@
-package solitaire;
+package com.klondike_solitaire;
 
 import java.awt.Component;
 import java.awt.event.MouseEvent;
