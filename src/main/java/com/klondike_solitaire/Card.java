@@ -1,27 +1,24 @@
 package com.klondike_solitaire;
 
 import java.awt.Image;
+
 import javax.swing.ImageIcon;
 
 public class Card {
 
-    public static String cardBackFilename = "",
-                         cardOutlineFilename = "",
-                         fpBaseFilename = "";
-
-    public static String directory = "", extension = "";
-
+    public static String cardBackFilename = "back001",
+            cardOutlineFilename = "bottom01",
+            fpBaseFilename = "fpBase0";
+    public static String directory = "Images", extension = ".gif";
     private Image im;
     private int value;
     private String suit;
     private boolean faceUp;
     private Colour colour;
 
-    public Card(int value, Suit suit){
-
+    public Card(int value, Suit suit) {
         this.value = value;
-
-        switch (suit){
+        switch(suit) {
 
             case Clubs:
                 this.suit = "c";
@@ -45,44 +42,43 @@ public class Card {
         }
 
         faceUp = false;
-
-        try{
-            ImageIcon ii = new ImageIcon(getClass().getResource("s"));
+        // getClass().getResource(directory + cardFile(suit, value))
+        try {
+            ImageIcon ii = new ImageIcon("src\\main\\java\\com\\Images\\" + cardFile(suit, value));
             im = ii.getImage();
-        }catch (Exception e){
-            System.out.println(e);
+        }catch(Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
-    private String cardFile(Suit s, int value){
-
+    private String cardFile(Suit s, int val) {
         char ch;
 
-        if (value < 1 || value > 13)
+        if (val < 1 || val > 13)
             throw new IllegalArgumentException("Bad Card Number");
 
-        if(s == Suit.Clubs){
+        if(s == Suit.Clubs) {
             ch = 'c';
-        }else if(s == Suit.Hearts){
+        }else if(s == Suit.Hearts) {
             ch = 'h';
-        }else if(s == Suit.Spades){
+        }else if(s == Suit.Spades) {
             ch = 's';
-        }else if(s == Suit.Diamonds){
+        }else if(s == Suit.Diamonds) {
             ch = 'd';
         }
         else throw new IllegalArgumentException("Bad Card Suit");
 
-        if(value < 10)
-            return "/0" + value + ch + extension;
+        if(val < 10)
+            return "/0" + val + ch + extension;
         else
-            return "/" + value + ch + extension;
+            return "/" + val + ch + extension;
     }
 
-    public Image getCardImage(){
+    public Image getCardImage() {
         return im;
     }
 
-    public boolean isFaceUp(){
+    public boolean isFaceUp() {
         return faceUp;
     }
 
@@ -90,32 +86,27 @@ public class Card {
         return colour;
     }
 
-
-
     @Override
     public String toString() {
         return value + " of " + suit ;
     }
 
+    // Card.class.getResource(directory + "/" + fpBaseFilename + suit + extension)
     public static Image getFoundationBase(int suit) {
-        ImageIcon ii = new ImageIcon(
-                Card.class.getResource(directory + "/" + fpBaseFilename + suit + extension));
-        Image image = ii.getImage();
-        return image;
+        ImageIcon ii = new ImageIcon("src\\main\\java\\com\\Images\\" + fpBaseFilename + suit + extension);
+        return ii.getImage();
     }
 
+    // Card.class.getResource(directory + "/" + cardOutlineFilename + extension)
     public static Image getCardOutline() {
-        ImageIcon ii = new ImageIcon(
-                Card.class.getResource(directory + "/" + cardOutlineFilename + extension));
-        Image image = ii.getImage();
-        return image;
+        ImageIcon ii = new ImageIcon("src\\main\\java\\com\\Images\\" + cardOutlineFilename + extension);
+        return ii.getImage();
     }
 
+    // Card.class.getResource(directory + "/" + cardBackFilename + extension)
     public static Image getCardBack() {
-        ImageIcon ii = new ImageIcon(
-                Card.class.getResource(directory + "/" + cardBackFilename + extension));
-        Image image = ii.getImage();
-        return image;
+        ImageIcon ii = new ImageIcon("src\\main\\java\\com\\Images\\" + cardBackFilename + ".jpg");
+        return ii.getImage();
     }
 
     public int getValue() {
