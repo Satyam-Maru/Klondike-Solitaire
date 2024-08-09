@@ -10,7 +10,6 @@ public class Solitaire extends JFrame {
 
     public Solitaire(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
         gamePanel = new GamePanel();
         gamePanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         add(gamePanel);
