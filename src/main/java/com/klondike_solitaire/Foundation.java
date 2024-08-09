@@ -26,7 +26,7 @@ public class Foundation extends Pile{
 	public void moveFromWaste(Waste source, Card card) {
 		if(accepts(card)) {
 			this.push(source.pop());
-			source = null;
+//			source = null;
 		}
 	}
 	
@@ -56,5 +56,4 @@ public class Foundation extends Pile{
 		}
 		return false;
 	}
-
 }

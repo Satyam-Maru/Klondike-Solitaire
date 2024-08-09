@@ -4,9 +4,9 @@ import java.util.EmptyStackException;
 import java.util.Stack;
 import javax.swing.JPanel;
 
-public abstract class Pile extends JPanel{
+public class Pile extends JPanel{
 
-    protected int x, y;
+//    protected int x, y;
     protected Stack<Card> cards;
 
     public Pile(int x, int y){

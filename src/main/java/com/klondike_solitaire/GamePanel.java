@@ -25,20 +25,24 @@ public class GamePanel extends JPanel {
 		addMouseMotionListener(l);
 	}
 
-
-
 	private void initializePiles() {
+
 		deck = new Deck(DECK_POSITION.x, DECK_POSITION.y);
 		add(deck);
+
 		waste = new Waste(DECK_POSITION.x - XShift, DECK_POSITION.y);
 		add(waste);
+
 		foundationPiles = new Foundation[4];
-		for(int i = 0; i < foundationPiles.length; ++i) {
+
+		for(int i = 0; i < foundationPiles.length; i++) {
 			foundationPiles[i] = new Foundation(20 + XShift * i, 20, i + 1);
 			add(foundationPiles[i]);
 		}
+
 		tableau = new Tableau[7];
-		for(int tableauIndex = 1; tableauIndex <= tableau.length; ++tableauIndex) {
+
+		for(int tableauIndex = 1; tableauIndex <= tableau.length; tableauIndex++) {
 			tableau[tableauIndex - 1] = new Tableau(TABLEAU_POSITION.x + TABLEAU_OFFSET * (tableauIndex - 1),
 					TABLEAU_POSITION.y,
 					tableauIndex + 1);
@@ -46,33 +50,22 @@ public class GamePanel extends JPanel {
 		}
 	}
 
-
-
 	public static Foundation[] getFoundationPiles() {
 		return foundationPiles;
 	}
-
-
 
 	public static Waste getWastePile() {
 		return waste;
 	}
 
-
-
 	public static Deck getDeck() {
 		return deck;
 	}
-
-
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(Color.green);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		
 	}
-
-	
 }
