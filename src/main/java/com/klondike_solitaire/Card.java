@@ -44,7 +44,7 @@ public class Card {
         faceUp = false;
         // getClass().getResource(directory + cardFile(suit, value))
         try {
-            ImageIcon ii = new ImageIcon("src\\main\\java\\com\\Images" + cardFile(suit, value));
+            ImageIcon ii = new ImageIcon( System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images" + cardFile(suit, value));
             im = ii.getImage();
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -55,9 +55,6 @@ public class Card {
 
         char ch = 'a';
 
-        // if (val < 1 || val > 13)
-        // throw new IllegalArgumentException("Bad Card Number");
-
         if (s == Suit.Clubs) {
             ch = 'c';
         } else if (s == Suit.Hearts) {
@@ -67,7 +64,6 @@ public class Card {
         } else if (s == Suit.Diamonds) {
             ch = 'd';
         }
-        // else throw new IllegalArgumentException("Bad Card Suit");
 
         if (val < 10)
             return "/0" + val + ch + extension;
@@ -94,19 +90,19 @@ public class Card {
 
     // Card.class.getResource(directory + "/" + fpBaseFilename + suit + extension)
     public static Image getFoundationBase(int suit) {
-        ImageIcon ii = new ImageIcon("src\\main\\java\\com\\Images\\" + fpBaseFilename + suit + extension);
+        ImageIcon ii = new ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images\\" + fpBaseFilename + suit + extension);
         return ii.getImage();
     }
 
     // Card.class.getResource(directory + "/" + cardOutlineFilename + extension)
     public static Image getCardOutline() {
-        ImageIcon ii = new ImageIcon("src\\main\\java\\com\\Images\\" + cardOutlineFilename + extension);
+        ImageIcon ii = new ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images\\" + cardOutlineFilename + extension);
         return ii.getImage();
     }
 
     // Card.class.getResource(directory + "/" + cardBackFilename + extension)
     public static Image getCardBack() {
-        ImageIcon ii = new ImageIcon("src\\main\\java\\com\\Images\\" + cardBackFilename + ".jpg");
+        ImageIcon ii = new ImageIcon(  System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images\\" + cardBackFilename + ".jpg");
         return ii.getImage();
     }
 
