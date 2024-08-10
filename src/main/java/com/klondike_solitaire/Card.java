@@ -40,7 +40,7 @@ public class Card {
                 colour = Colour.Red;
                 break;
         }
-
+        // E:\Klondike Solitaire\src\main\java\com\Images\01c.gif
         faceUp = false;
         // getClass().getResource(directory + cardFile(suit, value))
         try {
