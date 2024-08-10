@@ -18,7 +18,7 @@ public class Card {
 
     public Card(int value, Suit suit) {
         this.value = value;
-        switch(suit) {
+        switch (suit) {
 
             case Clubs:
                 this.suit = "c";
@@ -46,7 +46,7 @@ public class Card {
         try {
             ImageIcon ii = new ImageIcon("src\\main\\java\\com\\Images" + cardFile(suit, value));
             im = ii.getImage();
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
@@ -55,21 +55,21 @@ public class Card {
 
         char ch = 'a';
 
-//        if (val < 1 || val > 13)
-//            throw new IllegalArgumentException("Bad Card Number");
+        // if (val < 1 || val > 13)
+        // throw new IllegalArgumentException("Bad Card Number");
 
-        if(s == Suit.Clubs) {
+        if (s == Suit.Clubs) {
             ch = 'c';
-        }else if(s == Suit.Hearts) {
+        } else if (s == Suit.Hearts) {
             ch = 'h';
-        }else if(s == Suit.Spades) {
+        } else if (s == Suit.Spades) {
             ch = 's';
-        }else if(s == Suit.Diamonds) {
+        } else if (s == Suit.Diamonds) {
             ch = 'd';
         }
-//        else throw new IllegalArgumentException("Bad Card Suit");
+        // else throw new IllegalArgumentException("Bad Card Suit");
 
-        if(val < 10)
+        if (val < 10)
             return "/0" + val + ch + extension;
         else
             return "/" + val + ch + extension;
@@ -89,7 +89,7 @@ public class Card {
 
     @Override
     public String toString() {
-        return value + " of " + suit ;
+        return value + " of " + suit;
     }
 
     // Card.class.getResource(directory + "/" + fpBaseFilename + suit + extension)
