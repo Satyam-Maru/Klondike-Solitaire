@@ -26,6 +26,7 @@ public class Utility extends JPanel implements ActionListener {
 //        setLocationRelativeTo(null);
 //        setLayout(null);
 //
+        getButtons();
         setTopPanel();
         setBottomPanel();
 //        add(getTopPanel());
@@ -41,7 +42,7 @@ public class Utility extends JPanel implements ActionListener {
         btn1.setBounds(0, 0, 100, 40);
 
         btn2 = setButton(btn2, "Btn2");
-        btn2.setBounds(70, 0, 100, 40);
+        btn2.setBounds(0, 0, 100, 40);
 
         this.add(btn1);
         this.add(btn2);
@@ -62,12 +63,14 @@ public class Utility extends JPanel implements ActionListener {
         topPanel = new JPanel();
         topPanel.setBounds(0, 0, 800, 40);
         topPanel.setBackground(Color.BLACK);
+        topPanel.add(btn1);
     }
 
     protected void setBottomPanel(){
         bottomPanel = new JPanel();
         bottomPanel.setBounds(0, 560, 800, 40);
         bottomPanel.setBackground(Color.ORANGE);
+        bottomPanel.add(btn2);
     }
 
     protected static JPanel getTopPanel(){
