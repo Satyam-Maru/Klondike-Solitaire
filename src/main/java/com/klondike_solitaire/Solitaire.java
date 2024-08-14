@@ -13,6 +13,7 @@ public class Solitaire extends JFrame {
         gamePanel = new GamePanel();
         gamePanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         setLocation(300,110);
+        setResizable(false);
         add(gamePanel);
         pack();
         setVisible(true);
