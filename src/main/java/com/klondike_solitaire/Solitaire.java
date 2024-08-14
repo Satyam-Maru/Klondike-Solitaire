@@ -12,7 +12,6 @@ public class Solitaire extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gamePanel = new GamePanel();
         gamePanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-        //setUndecorated(true);
         setLocation(300,110);
         add(gamePanel);
         pack();
