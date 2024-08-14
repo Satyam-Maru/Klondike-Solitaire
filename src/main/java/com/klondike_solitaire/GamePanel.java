@@ -6,7 +6,8 @@ import java.awt.Point;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
-	
+
+	protected static Utility utility;
 	protected static int XShift = 80;
 	public static Point DECK_POSITION = new Point(560, 60);
 	public static Point TABLEAU_POSITION = new Point(80, 190);
@@ -18,8 +19,10 @@ public class GamePanel extends JPanel {
 
 	public GamePanel() {
 		super.setLayout(null);
+		utility = new Utility();
+		add(Utility.getTopPanel());
+		add(Utility.getBottomPanel());
 		initializePiles();
-		
 		GameMoveListener l = new GameMoveListener();
 		addMouseListener(l);
 		addMouseMotionListener(l);
