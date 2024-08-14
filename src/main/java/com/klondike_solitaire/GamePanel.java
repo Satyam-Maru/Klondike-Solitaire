@@ -20,6 +20,7 @@ public class GamePanel extends JPanel {
 	public GamePanel() {
 		super.setLayout(null);
 		utility = new Utility();
+		utility.thread = new Thread(utility);
 		add(Utility.getTopPanel());
 		add(Utility.getBottomPanel());
 		initializePiles();

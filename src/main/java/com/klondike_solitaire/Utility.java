@@ -5,9 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Utility extends JPanel implements ActionListener {
-
-    private static JPanel topPanel, bottomPanel;
+public class Utility extends JPanel implements ActionListener, Runnable {
 
     // width and height of GamePanel is 800 x 600
 
@@ -15,44 +13,47 @@ public class Utility extends JPanel implements ActionListener {
 
     // Bottom panel will occupy 800 width and 40 height
 
-    public static void main(String[] args) {
-        new Utility();
-    }
-
-    JButton btn1, btn2;
+    private static JPanel topPanel, bottomPanel;
+    JButton leaderboardBtn, statisticsBtn, undoBtn, redoBtn, resetBtn;
+    JLabel scoreLabel, scoreValueLabel, moveLabel, moveValueLabel, timeLabel, timeValueLabel;
+    Thread thread;
+    int count = 0;
+    int sec = 0, min = 0;
 
     Utility(){
-//        setSize(800, 600);
-//        setLocationRelativeTo(null);
-//        setLayout(null);
-//
         getButtons();
+        setLabels();
         setTopPanel();
         setBottomPanel();
-//        add(getTopPanel());
-//        add(getBottomPanel());
-//
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        getButtons();
-//        setVisible(true);
     }
 
     protected void getButtons(){
-        btn1 = setButton(btn1, "Btn1");
-        btn1.setBounds(0, 0, 100, 40);
+        //for top panel
+        leaderboardBtn = initButton(leaderboardBtn, "LeaderBoard");
+        leaderboardBtn.setBounds(0, 5, 140, 35);
 
-        btn2 = setButton(btn2, "Btn2");
-        btn2.setBounds(0, 0, 100, 40);
+        statisticsBtn = initButton(statisticsBtn, "Statistics");
+        statisticsBtn.setBounds(150, 5, 120, 35);
 
-        this.add(btn1);
-        this.add(btn2);
+        // for bottom panel
+        undoBtn = initButton(undoBtn, "Undo");
+        undoBtn.setBounds(150, 0, 100, 35);
+
+        resetBtn = initButton(resetBtn, "Reset");
+        resetBtn.setBounds(550, 0, 100, 35);
+
+        redoBtn = initButton(redoBtn, "Redo");
+        redoBtn.setBounds(350, 0, 100, 35);
     }
 
-    protected JButton setButton(JButton button, String name){
+    protected JButton initButton(JButton button, String name){
 
         button = new JButton(name);
-        button.setFont(new Font("Rockwell", Font.BOLD, 20));
-        button.setForeground(Color.gray);
+        button.setFont(new Font("Rockwell", Font.BOLD, 16));
+        button.setForeground(Color.BLACK);
+        button.setBackground(Color.GREEN);
+//        button.setBorderPainted(false);
+        button.setContentAreaFilled(false);
         button.setFocusable(false);
         button.addActionListener(this);
 
@@ -62,15 +63,56 @@ public class Utility extends JPanel implements ActionListener {
     protected void setTopPanel(){
         topPanel = new JPanel();
         topPanel.setBounds(0, 0, 800, 40);
-        topPanel.setBackground(Color.BLACK);
-        topPanel.add(btn1);
+        topPanel.setBackground(Color.GREEN);
+        topPanel.setLayout(null);
+
+        topPanel.add(leaderboardBtn);
+        topPanel.add(statisticsBtn);
+        topPanel.add(scoreLabel);
+        topPanel.add(scoreValueLabel);
+        topPanel.add(moveLabel);
+        topPanel.add(moveValueLabel);
+        topPanel.add(timeLabel);
+        topPanel.add(timeValueLabel);
     }
 
     protected void setBottomPanel(){
         bottomPanel = new JPanel();
+        bottomPanel.setLayout(null);
         bottomPanel.setBounds(0, 560, 800, 40);
-        bottomPanel.setBackground(Color.ORANGE);
-        bottomPanel.add(btn2);
+        bottomPanel.setBackground(Color.GREEN);
+
+        bottomPanel.add(undoBtn);
+        bottomPanel.add(redoBtn);
+        bottomPanel.add(resetBtn);
+    }
+
+    protected JLabel initLabel(JLabel label, String name){
+        label = new JLabel(name);
+        label.setFont(new Font("Rockwell", Font.BOLD, 21));
+        label.setForeground(Color.BLACK);
+        return label;
+    }
+
+    protected void setLabels(){
+        // 5-5 (x) gab between string and score label
+        scoreLabel = initLabel(scoreLabel, "Score:");
+        scoreLabel.setBounds(320, 5, 65, 30);
+
+        scoreValueLabel = initLabel(scoreValueLabel, "0");
+        scoreValueLabel.setBounds(390, 5, 50, 30);
+
+        moveLabel = initLabel(moveLabel, "Moves:");
+        moveLabel.setBounds(460, 5, 80, 30);
+
+        moveValueLabel = initLabel(moveValueLabel, "0");
+        moveValueLabel.setBounds(545, 5, 50, 30);
+
+        timeLabel = initLabel(timeLabel, "Time:");
+        timeLabel.setBounds(610, 5, 65, 30);
+
+        timeValueLabel = initLabel(timeValueLabel, "00:00");
+        timeValueLabel.setBounds(680, 5, 80, 30);
     }
 
     protected static JPanel getTopPanel(){
@@ -83,10 +125,40 @@ public class Utility extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
 
-        if(e.getSource() == btn1){
-            System.out.println("btn 1");
-        }else if(e.getSource() == btn2){
-            System.out.println("btn 2");
+        if(e.getSource() == undoBtn){
+            if(count > 0){
+                count--;
+            }
+            scoreValueLabel.setText(String.valueOf(count));
+            moveValueLabel.setText(String.valueOf(count));
+        }else if(e.getSource() == redoBtn){
+            count++;
+            scoreValueLabel.setText(String.valueOf(count));
+            moveValueLabel.setText(String.valueOf(count));
+        } else if (e.getSource() == resetBtn) {
+            thread.start();
+        }
+    }
+
+    @Override
+    public void run(){
+        try{
+            while (min != 2){
+
+                if(sec == 60){
+                    sec = 0;
+                    min++;
+                }else{
+                    sec++;
+                }
+
+                timeValueLabel.setText(String.valueOf(min) + " : " + String.valueOf(sec));
+                System.out.println(timeValueLabel.getText());
+                Thread.sleep(1000);
+            }
+            System.out.println("Thread completed!!!");
+        }catch (InterruptedException e){
+            System.out.println(e);
         }
     }
 }
