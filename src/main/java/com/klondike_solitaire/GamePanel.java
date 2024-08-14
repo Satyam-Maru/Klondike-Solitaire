@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel {
 	
 	protected static int XShift = 80;
-	public static Point DECK_POSITION = new Point(500, 20);
-	public static Point TABLEAU_POSITION = new Point(20, 150);
+	public static Point DECK_POSITION = new Point(500, 70); // changing y from 20 to 70
+	public static Point TABLEAU_POSITION = new Point(20, 200); // changing y from 150 to 200
 	private static int TABLEAU_OFFSET = 80;
 	private static Deck deck;
 	private static Waste waste;
@@ -36,7 +36,7 @@ public class GamePanel extends JPanel {
 		foundationPiles = new Foundation[4];
 
 		for(int i = 0; i < foundationPiles.length; i++) {
-			foundationPiles[i] = new Foundation(20 + XShift * i, 20, i + 1);
+			foundationPiles[i] = new Foundation(20 + XShift * i, 70, i + 1);
 			add(foundationPiles[i]);
 		}
 
