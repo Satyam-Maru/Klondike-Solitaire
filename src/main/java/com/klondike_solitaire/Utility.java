@@ -20,15 +20,15 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     int count = 0;
     int sec = 0, min = 0;
 
-    Utility(){
+    Utility() {
         getButtons();
         setLabels();
         setTopPanel();
         setBottomPanel();
     }
 
-    protected void getButtons(){
-        //for top panel
+    protected void getButtons() {
+        // for top panel
         leaderboardBtn = initButton(leaderboardBtn, "LeaderBoard");
         leaderboardBtn.setBounds(0, 5, 140, 35);
 
@@ -46,13 +46,13 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         redoBtn.setBounds(350, 0, 100, 35);
     }
 
-    protected JButton initButton(JButton button, String name){
+    protected JButton initButton(JButton button, String name) {
 
         button = new JButton(name);
         button.setFont(new Font("Rockwell", Font.BOLD, 16));
         button.setForeground(Color.BLACK);
         button.setBackground(Color.GREEN);
-//        button.setBorderPainted(false);
+        // button.setBorderPainted(false);
         button.setContentAreaFilled(false);
         button.setFocusable(false);
         button.addActionListener(this);
@@ -60,7 +60,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         return button;
     }
 
-    protected void setTopPanel(){
+    protected void setTopPanel() {
         topPanel = new JPanel();
         topPanel.setBounds(0, 0, 800, 40);
         topPanel.setBackground(Color.GREEN);
@@ -76,7 +76,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         topPanel.add(timeValueLabel);
     }
 
-    protected void setBottomPanel(){
+    protected void setBottomPanel() {
         bottomPanel = new JPanel();
         bottomPanel.setLayout(null);
         bottomPanel.setBounds(0, 560, 800, 40);
@@ -87,14 +87,14 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         bottomPanel.add(resetBtn);
     }
 
-    protected JLabel initLabel(JLabel label, String name){
+    protected JLabel initLabel(JLabel label, String name) {
         label = new JLabel(name);
         label.setFont(new Font("Rockwell", Font.BOLD, 21));
         label.setForeground(Color.BLACK);
         return label;
     }
 
-    protected void setLabels(){
+    protected void setLabels() {
         // 5-5 (x) gab between string and score label
         scoreLabel = initLabel(scoreLabel, "Score:");
         scoreLabel.setBounds(320, 5, 65, 30);
@@ -115,39 +115,42 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         timeValueLabel.setBounds(680, 5, 80, 30);
     }
 
-    protected static JPanel getTopPanel(){
+    protected static JPanel getTopPanel() {
         return topPanel;
     }
 
-    protected static JPanel getBottomPanel(){
+    protected static JPanel getBottomPanel() {
         return bottomPanel;
     }
-    @Override
-    public void actionPerformed(ActionEvent e){
 
-        if(e.getSource() == undoBtn){
-            if(count > 0){
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == undoBtn) {
+            if (count > 0) {
                 count--;
             }
             scoreValueLabel.setText(String.valueOf(count));
             moveValueLabel.setText(String.valueOf(count));
-        }else if(e.getSource() == redoBtn){
+        } else if (e.getSource() == redoBtn) {
             count++;
             scoreValueLabel.setText(String.valueOf(count));
             moveValueLabel.setText(String.valueOf(count));
         } else if (e.getSource() == resetBtn) {
+            Solitaire.solitaire.dispose();
+            Solitaire.solitaire = new Solitaire();
         }
     }
 
     @Override
-    public void run(){
-        try{
-            while (min != 5){
+    public void run() {
+        try {
+            while (min != 5) {
 
-                if(sec == 60){
+                if (sec == 60) {
                     sec = 0;
                     min++;
-                }else{
+                } else {
                     sec++;
                 }
 
@@ -156,7 +159,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 Thread.sleep(1000);
             }
             System.out.println("Thread completed!!!");
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println(e);
         }
     }
