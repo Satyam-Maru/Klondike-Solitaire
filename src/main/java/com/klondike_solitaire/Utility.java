@@ -17,8 +17,8 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     JButton leaderboardBtn, statisticsBtn, undoBtn, resetBtn;
     static  JLabel scoreLabel, scoreValueLabel, moveLabel, moveValueLabel, timeLabel, timeValueLabel;
     Thread thread;
-    int count = 0;
     int sec = 0, min = 0;
+    private boolean showBack;
 
     Utility() {
         getButtons();
@@ -140,13 +140,21 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 prevPile.push(GamePanel.undo.pop());
                 currentPile.pop();
 
+                // to paint the back card
+                if(prevPile instanceof Tableau){
+                    showBack = true;
+                }
+
                 prevPile.repaint();
                 currentPile.repaint();
                 System.out.println("check");
+
+
             }
         }
         else if (e.getSource() == resetBtn) {
             Solitaire.solitaire.dispose();
+            thread.interrupt();
             Solitaire.solitaire = new Solitaire();
         }
     }

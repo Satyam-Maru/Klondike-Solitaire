@@ -52,10 +52,9 @@ public class GamePanel extends JPanel {
 		tableau = new Tableau[7];
 
 		for (int tableauIndex = 0; tableauIndex < tableau.length; tableauIndex++) {
-			tableau[tableauIndex ] = new Tableau(TABLEAU_POSITION.x + TABLEAU_OFFSET * (tableauIndex - 1),
-					TABLEAU_POSITION.y,
-					tableauIndex + 1);
-			add(tableau[tableauIndex ]);
+			tableau[tableauIndex] = new Tableau(TABLEAU_POSITION.x + TABLEAU_OFFSET * (tableauIndex - 1),
+					TABLEAU_POSITION.y,tableauIndex + 1);
+			add(tableau[tableauIndex]);
 		}
 	}
 

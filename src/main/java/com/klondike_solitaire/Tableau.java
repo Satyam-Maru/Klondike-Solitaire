@@ -35,9 +35,7 @@ public class Tableau extends Pile {
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 
         int cardYPos = 0;
-        if (this.isEmpty()) {
-
-        } else {
+        if (!this.isEmpty()) {
             for (Card c : this.cards) {
                 if (c.isFaceUp()) {
                     g.drawImage(c.getCardImage(), 0, cardYPos, 72, 96, this);
