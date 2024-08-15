@@ -1,7 +1,9 @@
 package com.klondike_solitaire;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.Stack;
 
 import javax.swing.JPanel;
 
@@ -16,6 +18,9 @@ public class GamePanel extends JPanel {
 	private static Waste waste;
 	private static Foundation[] foundationPiles;
 	private static Tableau[] tableau;
+
+	static Stack<Card> undo = new Stack<>();
+	static Stack<Card> redo = new Stack<>();
 
 	public GamePanel() {
 		super.setLayout(null);
@@ -40,14 +45,14 @@ public class GamePanel extends JPanel {
 
 		foundationPiles = new Foundation[4];
 
-		for(int i = 0; i < foundationPiles.length; i++) {
+		for (int i = 0; i < foundationPiles.length; i++) {
 			foundationPiles[i] = new Foundation(80 + XShift * i, 60, i + 1);
 			add(foundationPiles[i]);
 		}
 
 		tableau = new Tableau[7];
 
-		for(int tableauIndex = 1; tableauIndex <= tableau.length; tableauIndex++) {
+		for (int tableauIndex = 1; tableauIndex <= tableau.length; tableauIndex++) {
 			tableau[tableauIndex - 1] = new Tableau(TABLEAU_POSITION.x + TABLEAU_OFFSET * (tableauIndex - 1),
 					TABLEAU_POSITION.y,
 					tableauIndex + 1);
