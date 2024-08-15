@@ -37,9 +37,9 @@ public class GameMoveListener extends MouseInputAdapter {
 			if(!deck.isEmpty()) {
 				Waste waste = GamePanel.getWastePile();
 				waste.push(deck.pop());
-				GamePanel.moves.add(waste.topCard()); // adding current moved card into moves stack
-				GamePanel.moves.peek().prevPile = deck;
-				GamePanel.moves.peek().currentPile = waste;
+				GamePanel.undo.add(waste.topCard()); // adding current moved card into undo stack
+				GamePanel.undo.peek().prevPile = deck;
+				GamePanel.undo.peek().currentPile = waste;
 				waste.topCard().showFace();
 			}
 		}else if(pressedComponent instanceof Waste) {
@@ -65,25 +65,25 @@ public class GameMoveListener extends MouseInputAdapter {
 					if(!waste.isEmpty()) {
 						destination.moveFromWaste(waste, selectedCard);
 					}
-//					Utility.moves++;
+//					Utility.undo++;
 					waste.repaint();
 				}else if(selectedTaubleau != null) {
 					Tableau source = selectedTaubleau;
 					Tableau destination = (Tableau) releasedComponent;
 					source.moveTo(destination, selectedCard);
-//					Utility.moves++;
+//					Utility.undo++;
 					source.repaint();
 				}else if(selectedFoundation != null) { 
 					Foundation source = selectedFoundation;
 					Tableau destination = (Tableau) releasedComponent;
 					source.moveTo(destination, selectedCard);
-//					Utility.moves++;
+//					Utility.undo++;
 					source.repaint();
 					destination.repaint();
 				}
 			}
 		}
-//		Utility.moveValueLabel.setText(String.valueOf(Utility.moves));
+//		Utility.moveValueLabel.setText(String.valueOf(Utility.undo));
 		e.getComponent().repaint();
 		selectedCard = null;
 		selectedFoundation = null;

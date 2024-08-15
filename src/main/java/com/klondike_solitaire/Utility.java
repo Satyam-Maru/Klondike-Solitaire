@@ -14,7 +14,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     // Bottom panel will occupy 800 width and 40 height
 
     private static JPanel topPanel, bottomPanel;
-    JButton leaderboardBtn, statisticsBtn, undoBtn, redoBtn, resetBtn;
+    JButton leaderboardBtn, statisticsBtn, undoBtn, resetBtn;
     JLabel scoreLabel, scoreValueLabel, moveLabel, moveValueLabel, timeLabel, timeValueLabel;
     Thread thread;
     int count = 0;
@@ -37,13 +37,10 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
         // for bottom panel
         undoBtn = initButton(undoBtn, "Undo");
-        undoBtn.setBounds(150, 0, 100, 35);
+        undoBtn.setBounds(250, 0, 100, 35);
 
         resetBtn = initButton(resetBtn, "Reset");
-        resetBtn.setBounds(550, 0, 100, 35);
-
-        redoBtn = initButton(redoBtn, "Redo");
-        redoBtn.setBounds(350, 0, 100, 35);
+        resetBtn.setBounds(400, 0, 100, 35);
     }
 
     protected JButton initButton(JButton button, String name) {
@@ -83,7 +80,6 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         bottomPanel.setBackground(Color.GREEN);
 
         bottomPanel.add(undoBtn);
-        bottomPanel.add(redoBtn);
         bottomPanel.add(resetBtn);
     }
 
@@ -127,23 +123,17 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == undoBtn) {
-//            if (count > 0) {
-//                count--;
-//            }
-//            scoreValueLabel.setText(String.valueOf(count));
-//            moveValueLabel.setText(String.valueOf(count));
-            Pile prevPile = GamePanel.moves.peek().prevPile;
-            Pile currentPile = GamePanel.moves.peek().currentPile;
-            prevPile.push(GamePanel.moves.pop());
+            Pile prevPile = GamePanel.undo.peek().prevPile;
+            Pile currentPile = GamePanel.undo.peek().currentPile;
+
+            prevPile.push(GamePanel.undo.pop());
             currentPile.pop();
+
             prevPile.repaint();
             currentPile.repaint();
             System.out.println("check");
-        } else if (e.getSource() == redoBtn) {
-            count++;
-            scoreValueLabel.setText(String.valueOf(count));
-            moveValueLabel.setText(String.valueOf(count));
-        } else if (e.getSource() == resetBtn) {
+        }
+        else if (e.getSource() == resetBtn) {
             Solitaire.solitaire.dispose();
             Solitaire.solitaire = new Solitaire();
         }
@@ -162,7 +152,6 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 }
 
                 timeValueLabel.setText(String.valueOf(min) + " : " + String.valueOf(sec));
-//                System.out.println(timeValueLabel.getText());
                 Thread.sleep(1000);
             }
             System.out.println("Thread completed!!!");
