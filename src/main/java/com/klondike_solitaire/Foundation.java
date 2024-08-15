@@ -26,13 +26,19 @@ public class Foundation extends Pile{
 	public void moveFromWaste(Waste source, Card card) {
 		if(accepts(card)) {
 			this.push(source.pop());
-//			source = null;
+			GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
+			GamePanel.undo.peek().prevPile = source;
+			GamePanel.undo.peek().currentPile = this;
+			source = null;
 		}
 	}
 	
 	public void moveTo(Tableau destination, Card card) {
 		if(destination.accepts(card)) {
 			destination.push(this.pop());
+			GamePanel.undo.add(destination.topCard()); // adding current moved card into undo stack
+			GamePanel.undo.peek().prevPile = this;
+			GamePanel.undo.peek().currentPile = destination	;
 		}
 	}
 

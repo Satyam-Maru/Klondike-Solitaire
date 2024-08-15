@@ -53,6 +53,9 @@ public class Tableau extends Pile {
     public void moveFromWaste(Waste source, Card card) {
         if (this.accepts(card)) {
             this.push(source.pop());
+            GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
+            GamePanel.undo.peek().prevPile = source;
+            GamePanel.undo.peek().currentPile = this;
         }
         source = null;
     }
@@ -68,6 +71,9 @@ public class Tableau extends Pile {
     public boolean moveTo(Foundation destination, Card card) {
         if (destination.accepts(card)) {
             destination.push(this.pop());
+            GamePanel.undo.add(destination.topCard()); // adding current moved card into undo stack
+            GamePanel.undo.peek().prevPile = this;
+            GamePanel.undo.peek().currentPile = destination;
             if (!this.isEmpty()) {
                 this.topCard().showFace();
             }
@@ -89,6 +95,9 @@ public class Tableau extends Pile {
                 }
                 while(!toBeMovedCards.isEmpty()) {
                     destination.push(toBeMovedCards.pop());
+                    GamePanel.undo.add(destination.topCard()); // adding current moved card into undo stack
+                    GamePanel.undo.peek().prevPile = this;
+                    GamePanel.undo.peek().currentPile = destination;
                 }
             }
         }

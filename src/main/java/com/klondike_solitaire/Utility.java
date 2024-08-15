@@ -123,15 +123,18 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == undoBtn) {
-            Pile prevPile = GamePanel.undo.peek().prevPile;
-            Pile currentPile = GamePanel.undo.peek().currentPile;
 
-            prevPile.push(GamePanel.undo.pop());
-            currentPile.pop();
+            if(!GamePanel.undo.isEmpty()){
+                Pile prevPile = GamePanel.undo.peek().prevPile;
+                Pile currentPile = GamePanel.undo.peek().currentPile;
 
-            prevPile.repaint();
-            currentPile.repaint();
-            System.out.println("check");
+                prevPile.push(GamePanel.undo.pop());
+                currentPile.pop();
+
+                prevPile.repaint();
+                currentPile.repaint();
+                System.out.println("check");
+            }
         }
         else if (e.getSource() == resetBtn) {
             Solitaire.solitaire.dispose();

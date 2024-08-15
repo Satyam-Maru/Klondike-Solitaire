@@ -27,7 +27,7 @@ public class GameMoveListener extends MouseInputAdapter {
 			selectedCard = selectedTaubleau.getClickedCard(e.getY() - 200);
 			// for directly moving card from tableau to foundation
 			for(Foundation foundation : GamePanel.getFoundationPiles()) {
-				if(selectedTaubleau.moveTo(foundation, selectedCard)) {
+				if(selectedTaubleau.moveTo(foundation, selectedCard)) { // undo added
 					selectedTaubleau = null;
 					break;
 				}
@@ -48,7 +48,7 @@ public class GameMoveListener extends MouseInputAdapter {
 			selectedCard = waste.topCard();
 			if(selectedCard != null) {
 				for(Foundation foundation : GamePanel.getFoundationPiles()) {
-					foundation.moveFromWaste(waste, selectedCard);
+					foundation.moveFromWaste(waste, selectedCard); // undo added
 				}
 			}
 		}
@@ -63,27 +63,23 @@ public class GameMoveListener extends MouseInputAdapter {
 				if(waste != null) {
 					Tableau destination = (Tableau) releasedComponent;
 					if(!waste.isEmpty()) {
-						destination.moveFromWaste(waste, selectedCard);
+						destination.moveFromWaste(waste, selectedCard); // undo added
 					}
-//					Utility.undo++;
 					waste.repaint();
 				}else if(selectedTaubleau != null) {
 					Tableau source = selectedTaubleau;
 					Tableau destination = (Tableau) releasedComponent;
-					source.moveTo(destination, selectedCard);
-//					Utility.undo++;
+					source.moveTo(destination, selectedCard); // undo added
 					source.repaint();
 				}else if(selectedFoundation != null) { 
 					Foundation source = selectedFoundation;
 					Tableau destination = (Tableau) releasedComponent;
-					source.moveTo(destination, selectedCard);
-//					Utility.undo++;
+					source.moveTo(destination, selectedCard); // undo added
 					source.repaint();
 					destination.repaint();
 				}
 			}
 		}
-//		Utility.moveValueLabel.setText(String.valueOf(Utility.undo));
 		e.getComponent().repaint();
 		selectedCard = null;
 		selectedFoundation = null;
