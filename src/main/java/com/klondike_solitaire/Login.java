@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
@@ -17,20 +16,17 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginFrame extends JFrame implements ActionListener {
+public class Login extends JFrame implements ActionListener {
 
     protected static final int frameWidth = 1020, frameHeight = 650;
 
-    static ImageIcon loginFrameLogo = new ImageIcon("src\\main\\java\\com\\stockregister\\Images\\LoginFrameLogo.png");
-    ImageIcon stockRegisterImg = new ImageIcon("src\\main\\java\\com\\stockregister\\Images\\StockRegisterImg.png");
+    static ImageIcon loginFrameLogo = new ImageIcon("filename");
+    ImageIcon solitaireLogo = new ImageIcon("filename");
 
     JPanel mainPanel;
-
     JLabel stockImgLabel, warningLabel, passwordWarner;
-
     static JTextField emailTxtF;
     JPasswordField passwordTxtF;
-
     JButton signUpBtn, signInBtn;
 
     // For Email Validation
@@ -45,10 +41,14 @@ public class LoginFrame extends JFrame implements ActionListener {
     private final Pattern passwordPattern = Pattern.compile(PASSWORD_PATTERN);
     // -----------------------------------------------------------------------------
 
-    LoginFrame(){
+    Login(){
 
         initMainPanel();
         initFrame();
+    }
+
+    public static void main(String[] args) {
+        new Login();
     }
 
 
@@ -83,7 +83,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
         // setting the stock register image
         stockImgLabel = new JLabel();
-        stockImgLabel.setIcon(stockRegisterImg);
+        stockImgLabel.setIcon(solitaireLogo);
         stockImgLabel.setBounds(-30, -9, 350, 440);
         mainPanel.add(stockImgLabel);
 
@@ -176,19 +176,16 @@ public class LoginFrame extends JFrame implements ActionListener {
                     // run for new users
                     try {
 
-                        String store_name = getStoreName();
-
                         // Database Insertion
-                        String query = "INSERT INTO users VAlUES (?, ?, ?)";
+                        String query = "INSERT INTO users (user_email, user_password) VAlUES (?, ?)";
                         Database.prepareStatement(query);
 
                         Database.pst.setString(1, getEmail()); // JTextField
                         Database.pst.setString(2, getPassword()); // JPasswordField
-                        Database.pst.setString(3, store_name);
 
                         Database.pst.executeUpdate();
 
-                        User.current_user = new User(getEmail(), getPassword(), User.fetchStoreName(), User.fetchUserId());
+                        User.current_user = new User(getEmail(), getPassword(), User.fetchUserId());
 
                     } catch (SQLException ex) {
                         System.out.println(ex.getMessage());
@@ -209,13 +206,11 @@ public class LoginFrame extends JFrame implements ActionListener {
             }
 
         }else if(e.getSource() == signInBtn){
-             users.get(getEmail()) => returns password
+//             users.get(getEmail()) => returns password
             if(User.users.containsKey(getEmail()) && User.users.get(getEmail()).equals(getPassword())){
 
-                User.current_user = new User(getEmail(), getPassword(), User.fetchStoreName(), User.fetchUserId());
+                User.current_user = new User(getEmail(), getPassword(), User.fetchUserId());
 
-                HomeFrame frame = new HomeFrame(this);
-                frame.setVisible(true);
                 this.setVisible(false);
             }else{
                 passwordWarner.setText("");
