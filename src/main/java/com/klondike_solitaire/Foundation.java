@@ -27,6 +27,8 @@ public class Foundation extends Pile{
 		if(accepts(card)) {
 
 				point = point + 20;
+			Move=Move+1;
+			Utility.moveValueLabel.setText(String.valueOf(Move));
 			Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
 
 			this.push(source.pop());

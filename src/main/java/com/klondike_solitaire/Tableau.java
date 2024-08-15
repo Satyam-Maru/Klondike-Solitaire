@@ -53,6 +53,8 @@ public class Tableau extends Pile {
     public void moveFromWaste(Waste source, Card card) {
         if (this.accepts(card)) {
             point=point+10;
+            Move=Move+1;
+            Utility.moveValueLabel.setText(String.valueOf(Move));
             Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
             this.push(source.pop());
             GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
@@ -74,6 +76,8 @@ public class Tableau extends Pile {
         if (destination.accepts(card)) {
 
             point=point+15;
+            Move=Move+1;
+            Utility.moveValueLabel.setText(String.valueOf(Move));
            Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
             destination.push(this.pop());
             GamePanel.undo.add(destination.topCard()); // adding current moved card into undo stack
@@ -91,6 +95,8 @@ public class Tableau extends Pile {
         if (!this.isEmpty() || card.getValue() == 13) {
             if (destination.accepts(card)) {
                 point=point+5;
+                Move=Move+1;
+                Utility.moveValueLabel.setText(String.valueOf(Move));
                 Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
                 Deque<Card> toBeMovedCards = new ArrayDeque<>();
                 while(!this.isEmpty()) {
