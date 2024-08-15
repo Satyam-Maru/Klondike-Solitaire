@@ -79,7 +79,7 @@ public class Login extends JFrame implements ActionListener {
         mainPanel = new JPanel();
         mainPanel.setBounds(170, 80, frameWidth - 170, 420);
         mainPanel.setLayout(null);
-        mainPanel.setBackground(Color.BLACK);
+        mainPanel.setBackground(Color.GRAY);
 
         // setting the stock register image
         stockImgLabel = new JLabel();
