@@ -125,6 +125,13 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         if (e.getSource() == undoBtn) {
 
             if(!GamePanel.undo.isEmpty()){
+                if(Pile.point-20<=0){
+                    Pile.point=0;
+                }
+                else{
+                    Pile.point-=20;
+                }
+
                 Pile prevPile = GamePanel.undo.peek().prevPile;
                 Pile currentPile = GamePanel.undo.peek().currentPile;
 
@@ -145,7 +152,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     @Override
     public void run() {
         try {
-            while (min != 5) {
+            while (min != 60) {
 
                 if (sec == 60) {
                     sec = 0;
@@ -155,6 +162,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 }
 
                 timeValueLabel.setText(String.valueOf(min) + " : " + String.valueOf(sec));
+                scoreValueLabel.setText(String.valueOf(Pile.point));
                 Thread.sleep(1000);
             }
             System.out.println("Thread completed!!!");

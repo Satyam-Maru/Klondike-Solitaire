@@ -25,6 +25,9 @@ public class Foundation extends Pile{
 
 	public void moveFromWaste(Waste source, Card card) {
 		if(accepts(card)) {
+
+				point = point + 20;
+
 			this.push(source.pop());
 			GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
 			GamePanel.undo.peek().prevPile = source;

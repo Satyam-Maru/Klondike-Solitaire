@@ -52,6 +52,7 @@ public class Tableau extends Pile {
 
     public void moveFromWaste(Waste source, Card card) {
         if (this.accepts(card)) {
+            point=point+10;
             this.push(source.pop());
             GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
             GamePanel.undo.peek().prevPile = source;
@@ -70,6 +71,8 @@ public class Tableau extends Pile {
 
     public boolean moveTo(Foundation destination, Card card) {
         if (destination.accepts(card)) {
+
+            point=point+15;
             destination.push(this.pop());
             GamePanel.undo.add(destination.topCard()); // adding current moved card into undo stack
             GamePanel.undo.peek().prevPile = this;
@@ -85,6 +88,7 @@ public class Tableau extends Pile {
     public void moveTo(Tableau destination, Card card) {
         if (!this.isEmpty() || card.getValue() == 13) {
             if (destination.accepts(card)) {
+                point=point+5;
                 Deque<Card> toBeMovedCards = new ArrayDeque<>();
                 while(!this.isEmpty()) {
                     Card tmp = this.pop();

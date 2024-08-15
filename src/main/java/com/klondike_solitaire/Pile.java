@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 public class Pile extends JPanel{
 
 //    protected int x, y;
+    protected  static  int point=0;
     protected Stack<Card> cards;
     protected LinkedList<Card> history; // prev node will store prevPile, next node = nextPile (currentPile)
     protected static Stack<Card> moves;
