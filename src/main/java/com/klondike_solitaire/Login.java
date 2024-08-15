@@ -61,7 +61,7 @@ public class Login extends JFrame implements ActionListener {
         this.setLayout(null);   // managing the layout self
         this.setLocationRelativeTo(null);   // sets the frame in center of the window
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.getContentPane().setBackground(Color.BLACK);
+        this.getContentPane().setBackground(Color.GREEN);
         this.add(mainPanel);
 
         // TO-DO apply threading in Database.getConnection()
@@ -130,7 +130,7 @@ public class Login extends JFrame implements ActionListener {
         mainPanel.add(passwordTxtF);
     }
 
-    // TO-DO apply DATA_REDUNDANCY (make a method that init default btn settings)
+    // TO-DO apply DATA_REDUNDANCY (make a method that init default btn settings).
     protected void setButtons(){
 
         signUpBtn = new JButton();
