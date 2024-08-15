@@ -61,7 +61,7 @@ public class Login extends JFrame implements ActionListener {
         this.setLayout(null);   // managing the layout self
         this.setLocationRelativeTo(null);   // sets the frame in center of the window
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.getContentPane().setBackground(Color.GREEN);
+        this.getContentPane().setBackground(Color.GRAY);
         this.add(mainPanel);
 
         // TO-DO apply threading in Database.getConnection()
