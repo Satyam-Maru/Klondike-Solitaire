@@ -127,11 +127,18 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == undoBtn) {
-            if (count > 0) {
-                count--;
-            }
-            scoreValueLabel.setText(String.valueOf(count));
-            moveValueLabel.setText(String.valueOf(count));
+//            if (count > 0) {
+//                count--;
+//            }
+//            scoreValueLabel.setText(String.valueOf(count));
+//            moveValueLabel.setText(String.valueOf(count));
+            Pile prevPile = GamePanel.moves.peek().prevPile;
+            Pile currentPile = GamePanel.moves.peek().currentPile;
+            prevPile.push(GamePanel.moves.pop());
+            currentPile.pop();
+            prevPile.repaint();
+            currentPile.repaint();
+            System.out.println("check");
         } else if (e.getSource() == redoBtn) {
             count++;
             scoreValueLabel.setText(String.valueOf(count));
@@ -155,7 +162,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 }
 
                 timeValueLabel.setText(String.valueOf(min) + " : " + String.valueOf(sec));
-                System.out.println(timeValueLabel.getText());
+//                System.out.println(timeValueLabel.getText());
                 Thread.sleep(1000);
             }
             System.out.println("Thread completed!!!");

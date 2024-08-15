@@ -8,7 +8,7 @@ import java.util.Collections;
 
 public class Deck extends Pile implements ActionListener{
 
-    JButton btn = null;
+    JButton resetBtn = null;
 
     public Deck(int x, int y) {
 
@@ -35,9 +35,9 @@ public class Deck extends Pile implements ActionListener{
 
         if (!isEmpty()) {
             g.drawImage(Card.getCardBack(), 0, 0, this.getWidth(), this.getHeight(), this);
-            if(btn != null){
-                // btn is created
-                this.remove(btn);
+            if(resetBtn != null){
+                // resetBtn is created
+                this.remove(resetBtn);
                 this.revalidate();
                 this.repaint();
             }
@@ -45,21 +45,21 @@ public class Deck extends Pile implements ActionListener{
             // jyare deck khali hase tyare aa run thase
             g2d.setColor(Color.YELLOW);
             g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
-            this.add(btn);
+            this.add(resetBtn);
         }
     }
 
     protected void initButton(){
-        btn = new JButton(String.valueOf("Reset"));
-        btn.setFont(new Font("Sans Serif", Font.BOLD, 10));
-        btn.setBounds(0, 30, 70, 20);
-        btn.addActionListener(this);
+        resetBtn = new JButton("Reset");
+        resetBtn.setFont(new Font("Sans Serif", Font.BOLD, 10));
+        resetBtn.setContentAreaFilled(false);
+        resetBtn.setBounds(0, 30, 70, 20);
+        resetBtn.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        if(e.getSource() == btn){
+        if(e.getSource() == resetBtn){
             while(!GamePanel.getWastePile().isEmpty()){
                 push(GamePanel.getWastePile().pop());
             }

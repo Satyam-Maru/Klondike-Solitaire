@@ -130,7 +130,7 @@ public class Login extends JFrame implements ActionListener {
         mainPanel.add(passwordTxtF);
     }
 
-    // TO-DO apply DATA_REDUNDANCY (make a method that init default btn settings).
+    // TO-DO apply DATA_REDUNDANCY (make a method that init default resetBtn settings).
     protected void setButtons(){
 
         signUpBtn = new JButton();

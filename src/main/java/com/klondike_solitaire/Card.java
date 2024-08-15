@@ -15,6 +15,7 @@ public class Card {
     private String suit;
     private boolean faceUp;
     private Colour colour;
+    protected Pile prevPile, currentPile;
 
     public Card(int value, Suit suit) {
         this.value = value;

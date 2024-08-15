@@ -19,8 +19,7 @@ public class GamePanel extends JPanel {
 	private static Foundation[] foundationPiles;
 	private static Tableau[] tableau;
 
-	static Stack<Card> undo = new Stack<>();
-	static Stack<Card> redo = new Stack<>();
+	static Stack<Card> moves = new Stack<>();
 
 	public GamePanel() {
 		super.setLayout(null);

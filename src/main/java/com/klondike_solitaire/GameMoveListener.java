@@ -37,6 +37,9 @@ public class GameMoveListener extends MouseInputAdapter {
 			if(!deck.isEmpty()) {
 				Waste waste = GamePanel.getWastePile();
 				waste.push(deck.pop());
+				GamePanel.moves.add(waste.topCard()); // adding current moved card into moves stack
+				GamePanel.moves.peek().prevPile = deck;
+				GamePanel.moves.peek().currentPile = waste;
 				waste.topCard().showFace();
 			}
 		}else if(pressedComponent instanceof Waste) {
