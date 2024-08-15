@@ -12,7 +12,7 @@ public class GamePanel extends JPanel {
 	protected static Utility utility;
 	protected static int XShift = 80;
 	public static Point DECK_POSITION = new Point(560, 60);
-	public static Point TABLEAU_POSITION = new Point(80, 190);
+	public static Point TABLEAU_POSITION = new Point(160, 190);
 	private static int TABLEAU_OFFSET = 80;
 	private static Deck deck;
 	private static Waste waste;
@@ -51,11 +51,11 @@ public class GamePanel extends JPanel {
 
 		tableau = new Tableau[7];
 
-		for (int tableauIndex = 1; tableauIndex <= tableau.length; tableauIndex++) {
-			tableau[tableauIndex - 1] = new Tableau(TABLEAU_POSITION.x + TABLEAU_OFFSET * (tableauIndex - 1),
+		for (int tableauIndex = 0; tableauIndex < tableau.length; tableauIndex++) {
+			tableau[tableauIndex ] = new Tableau(TABLEAU_POSITION.x + TABLEAU_OFFSET * (tableauIndex - 1),
 					TABLEAU_POSITION.y,
 					tableauIndex + 1);
-			add(tableau[tableauIndex - 1]);
+			add(tableau[tableauIndex ]);
 		}
 	}
 
