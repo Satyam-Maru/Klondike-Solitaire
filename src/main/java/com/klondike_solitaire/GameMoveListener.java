@@ -25,6 +25,7 @@ public class GameMoveListener extends MouseInputAdapter {
 			selectedTaubleau = (Tableau) pressedComponent;
 			waste = null;
 			selectedCard = selectedTaubleau.getClickedCard(e.getY() - 150);
+			// for directly moving card from tableau to foundation
 			for(Foundation foundation : GamePanel.getFoundationPiles()) {
 				if(selectedTaubleau.moveTo(foundation, selectedCard)) {
 					selectedTaubleau = null;

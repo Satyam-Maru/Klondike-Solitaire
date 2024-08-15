@@ -136,14 +136,13 @@ public class Utility extends JPanel implements ActionListener, Runnable {
             scoreValueLabel.setText(String.valueOf(count));
             moveValueLabel.setText(String.valueOf(count));
         } else if (e.getSource() == resetBtn) {
-            thread.start();
         }
     }
 
     @Override
     public void run(){
         try{
-            while (min != 2){
+            while (min != 5){
 
                 if(sec == 60){
                     sec = 0;
