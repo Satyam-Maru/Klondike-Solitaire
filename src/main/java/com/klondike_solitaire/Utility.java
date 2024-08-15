@@ -15,7 +15,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
     private static JPanel topPanel, bottomPanel;
     JButton leaderboardBtn, statisticsBtn, undoBtn, resetBtn;
-    JLabel scoreLabel, scoreValueLabel, moveLabel, moveValueLabel, timeLabel, timeValueLabel;
+    static  JLabel scoreLabel, scoreValueLabel, moveLabel, moveValueLabel, timeLabel, timeValueLabel;
     Thread thread;
     int count = 0;
     int sec = 0, min = 0;
@@ -127,9 +127,11 @@ public class Utility extends JPanel implements ActionListener, Runnable {
             if(!GamePanel.undo.isEmpty()){
                 if(Pile.point-20<=0){
                     Pile.point=0;
+                    Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
                 }
                 else{
                     Pile.point-=20;
+                    Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
                 }
 
                 Pile prevPile = GamePanel.undo.peek().prevPile;
@@ -162,7 +164,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 }
 
                 timeValueLabel.setText(String.valueOf(min) + " : " + String.valueOf(sec));
-                scoreValueLabel.setText(String.valueOf(Pile.point));
+
                 Thread.sleep(1000);
             }
             System.out.println("Thread completed!!!");

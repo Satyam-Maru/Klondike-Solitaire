@@ -27,6 +27,7 @@ public class Foundation extends Pile{
 		if(accepts(card)) {
 
 				point = point + 20;
+			Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
 
 			this.push(source.pop());
 			GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
