@@ -2,45 +2,46 @@ package com.klondike_solitaire;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
-import java.util.LinkedList;
 import javax.swing.JPanel;
 
-public class Pile extends JPanel{
+public class Pile extends JPanel {
 
-//    protected int x, y;
-    protected  static  int point=0;
-    protected  static int Move=0;
+    // protected int x, y;
+    protected static int point = 0;
+    protected static int Move = 0;
     protected Stack<Card> cards;
-    protected LinkedList<Card> history; // prev node will store prevPile, next node = nextPile (currentPile)
     protected static Stack<Card> moves;
 
-    public Pile(int x, int y){
+    public Pile() {
+    }
+
+    public Pile(int x, int y) {
         super.setLocation(x, y);
         cards = new Stack<>();
     }
 
-    public Card topCard(){
+    public Card topCard() {
 
-        if(!this.cards.isEmpty()){
+        if (!this.cards.isEmpty()) {
             return this.cards.peek();
         }
         return null;
     }
 
-    public Card pop(){
+    public Card pop() {
 
-        try{
+        try {
             return cards.pop();
-        }catch (EmptyStackException e){
+        } catch (EmptyStackException e) {
             return null;
         }
     }
 
-    public void push(Card card){
+    public void push(Card card) {
         this.cards.push(card);
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return this.cards.isEmpty();
     }
 
