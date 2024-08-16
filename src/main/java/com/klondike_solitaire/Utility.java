@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayDeque;
 import java.util.Stack;
 
 public class Utility extends JPanel implements ActionListener, Runnable {
@@ -140,10 +141,15 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 prevPile.push(GamePanel.undo.pop());
                 currentPile.pop();
 
-                // to paint the back card
-                if (prevPile instanceof Tableau) {
-                    showBack = true;
-                    System.out.println("Tableau");
+                if(!Tableau.parentCardStack.isEmpty()){
+                    ArrayDeque<Card> deque = (ArrayDeque<Card>) Tableau.parentCardStack.pop();
+                    while (!deque.isEmpty()){
+                        prevPile = deque.getFirst().prevPile;
+                        currentPile = deque.getFirst().currentPile;
+
+                        prevPile.push(deque.removeFirst());
+                        currentPile.pop();
+                    }
                 }
 
                 prevPile.repaint();

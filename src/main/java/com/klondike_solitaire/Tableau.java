@@ -6,8 +6,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Stack;
 
 public class Tableau extends Pile {
+
+    // -------------------------------------------------------
+    // Stacks
+    static protected Stack<Deque<Card>> parentCardStack = new Stack<>();
+    static protected Deque<Card> multipleCardStack;
+    // -------------------------------------------------------
 
     public Tableau() {
     }
@@ -102,7 +109,7 @@ public class Tableau extends Pile {
                 Move = Move + 1;
                 Utility.moveValueLabel.setText(String.valueOf(Move));
                 Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
-                Deque<Card> toBeMovedCards = new ArrayDeque<>();
+                ArrayDeque<Card> toBeMovedCards = new ArrayDeque<>();
                 while (!this.isEmpty()) {
                     Card tmp = this.pop();
                     toBeMovedCards.push(tmp);
@@ -110,11 +117,37 @@ public class Tableau extends Pile {
                         break;
                     }
                 }
+
+                ArrayDeque<Card> temp = new ArrayDeque<>();
+
                 while (!toBeMovedCards.isEmpty()) {
                     destination.push(toBeMovedCards.pop());
-                    GamePanel.undo.add(destination.topCard()); // adding current moved card into undo stack
-                    GamePanel.undo.peek().prevPile = this;
-                    GamePanel.undo.peek().currentPile = destination;
+
+                    temp.addLast(destination.topCard());
+                    temp.getLast().prevPile = this;
+                    temp.getLast().currentPile = destination;
+                }
+
+                while (!temp.isEmpty()){
+
+                    GamePanel.undo.push(temp.getFirst()); // for storing single cards
+                    GamePanel.undo.peek().prevPile = temp.getFirst().prevPile;
+                    GamePanel.undo.peek().currentPile = temp.getLast().currentPile;
+
+                    temp.removeFirst();
+
+                    // check if to be moved cards are more than one
+                    if(!temp.isEmpty()){
+                        multipleCardStack = new ArrayDeque<>();
+                        while (!temp.isEmpty()){
+                            multipleCardStack.addLast(temp.getFirst()); // for storing single cards
+                            multipleCardStack.getLast().prevPile = temp.getFirst().prevPile;
+                            multipleCardStack.getLast().currentPile = temp.getFirst().currentPile;
+                            temp.removeFirst();
+                        }
+                        parentCardStack.push(multipleCardStack);
+                        break;
+                    }
                 }
             }
         }
