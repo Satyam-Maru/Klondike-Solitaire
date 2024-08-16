@@ -92,6 +92,7 @@ public class Login extends JFrame implements ActionListener {
         solitaireImageLabel.setBounds(-30,-9,350,440);
         mainPanel.add(solitaireImageLabel);
 
+
         setEmailPanel();
         setPasswordPanel();
         setButtons();
