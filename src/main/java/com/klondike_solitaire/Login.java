@@ -41,7 +41,7 @@ public class Login extends JFrame implements ActionListener {
     private final Pattern passwordPattern = Pattern.compile(PASSWORD_PATTERN);
     // -----------------------------------------------------------------------------
 
-    Login(){
+    Login() {
 
         initMainPanel();
         initFrame();
@@ -51,23 +51,22 @@ public class Login extends JFrame implements ActionListener {
         new Login();
     }
 
-
     protected void initFrame() {
 
         this.setTitle("Login Frame");
         this.setIconImage(loginFrameLogo.getImage());
-        this.setSize(frameWidth, frameHeight);  // 1020, 650
+        this.setSize(frameWidth, frameHeight); // 1020, 650
         this.setResizable(false);
-        this.setLayout(null);   // managing the layout self
-        this.setLocationRelativeTo(null);   // sets the frame in center of the window
+        this.setLayout(null); // managing the layout self
+        this.setLocationRelativeTo(null); // sets the frame in center of the window
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.CYAN);
         this.add(mainPanel);
 
         // TO-DO apply threading in Database.getConnection()
-        try{
+        try {
             Database.getConnection();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
@@ -82,16 +81,15 @@ public class Login extends JFrame implements ActionListener {
         mainPanel.setBackground(Color.CYAN);
 
         // setting the stock register image
-//        stockImgLabel = new JLabel();
-//        stockImgLabel.setIcon(solitaireLogo);
-//        stockImgLabel.setBounds(-30, -9, 350, 440);
-//        mainPanel.add(stockImgLabel);
+        // stockImgLabel = new JLabel();
+        // stockImgLabel.setIcon(solitaireLogo);
+        // stockImgLabel.setBounds(-30, -9, 350, 440);
+        // mainPanel.add(stockImgLabel);
 
-        solitaireImageLabel=new JLabel(solitaireLogo);
-//      solitaireImageLabel.setIcon(solitaireLogo);
-        solitaireImageLabel.setBounds(-30,-9,350,440);
+        solitaireImageLabel = new JLabel(solitaireLogo);
+        // solitaireImageLabel.setIcon(solitaireLogo);
+        solitaireImageLabel.setBounds(-30, -9, 350, 440);
         mainPanel.add(solitaireImageLabel);
-
 
         setEmailPanel();
         setPasswordPanel();
@@ -99,7 +97,7 @@ public class Login extends JFrame implements ActionListener {
         initWarningLabel();
     }
 
-    protected void setEmailPanel(){
+    protected void setEmailPanel() {
 
         JLabel emailString = new JLabel();
         emailString.setText("Email");
@@ -114,11 +112,11 @@ public class Login extends JFrame implements ActionListener {
         emailTxtF.setFont(new Font("Consolas", Font.PLAIN, 16));
         emailTxtF.setForeground(Color.WHITE);
         emailTxtF.setCaretColor(Color.WHITE);
-        emailTxtF.setBackground(new Color(27,27,27));
+        emailTxtF.setBackground(new Color(27, 27, 27));
         mainPanel.add(emailTxtF);
     }
 
-    protected void setPasswordPanel(){
+    protected void setPasswordPanel() {
 
         JLabel passString = new JLabel();
         passString.setText("Password");
@@ -130,14 +128,15 @@ public class Login extends JFrame implements ActionListener {
         passwordTxtF = new JPasswordField();
         passwordTxtF.setBounds(380, 175, 240, 35);
         passwordTxtF.setMargin(new Insets(2, 10, 0, 10));
-        passwordTxtF.setBackground(new Color(27,27,27));
+        passwordTxtF.setBackground(new Color(27, 27, 27));
         passwordTxtF.setForeground(Color.WHITE);
         passwordTxtF.setCaretColor(Color.WHITE);
         mainPanel.add(passwordTxtF);
     }
 
-    // TO-DO apply DATA_REDUNDANCY (make a method that init default resetBtn settings).
-    protected void setButtons(){
+    // TO-DO apply DATA_REDUNDANCY (make a method that init default resetBtn
+    // settings).
+    protected void setButtons() {
 
         signUpBtn = new JButton();
         signUpBtn.setBounds(390, 300, 100, 32);
@@ -145,7 +144,7 @@ public class Login extends JFrame implements ActionListener {
         signUpBtn.setMargin(new Insets(3, 5, 0, 5));
         signUpBtn.setFont(new Font("Consolas", Font.BOLD, 16));
         signUpBtn.setForeground(Color.WHITE);
-        signUpBtn.setBackground(new Color(50,205,50));
+        signUpBtn.setBackground(new Color(50, 205, 50));
         signUpBtn.setFocusable(false);
         signUpBtn.addActionListener(this);
         mainPanel.add(signUpBtn);
@@ -156,7 +155,7 @@ public class Login extends JFrame implements ActionListener {
         signInBtn.setMargin(new Insets(3, 5, 0, 5));
         signInBtn.setFont(new Font("Consolas", Font.BOLD, 16));
         signInBtn.setForeground(Color.WHITE);
-        signInBtn.setBackground(new Color(50,205,50));
+        signInBtn.setBackground(new Color(50, 205, 50));
         signInBtn.setFocusable(false);
         signInBtn.addActionListener(this);
         mainPanel.add(signInBtn);
@@ -167,17 +166,17 @@ public class Login extends JFrame implements ActionListener {
 
         User.getUsers(); // init HashMap containing user's data
 
-        if(e.getSource() == signUpBtn){
+        if (e.getSource() == signUpBtn) {
 
             // checks for value returned from TextField And PasswordField
-            if(isValidEmail(getEmail()) && isValidPassword(getPassword())){
+            if (isValidEmail(getEmail()) && isValidPassword(getPassword())) {
 
                 // User.users => users = HashMap
-                if(User.users.containsKey(getEmail())){
+                if (User.users.containsKey(getEmail())) {
                     // will run if user is already signed up
                     warningLabel.setText("Already a user, please sign in.");
                     passwordWarner.setText("");
-                }else{
+                } else {
 
                     // run for new users
                     try {
@@ -198,27 +197,28 @@ public class Login extends JFrame implements ActionListener {
                     }
 
                     this.setVisible(false);
+                    Solitaire.solitaire = new Solitaire();
                 }
             }
 
-            if(!isValidEmail(getEmail())){
+            if (!isValidEmail(getEmail())) {
 
                 warningLabel.setText("Invalid Email.");
                 passwordWarner.setText("");
-            }
-            else if (!isValidPassword(getPassword())) {
+            } else if (!isValidPassword(getPassword())) {
                 warningLabel.setText("Invalid Password.");
                 passwordWarner.setText("More than 4 chars & no spacing.");
             }
 
-        }else if(e.getSource() == signInBtn){
-//             users.get(getEmail()) => returns password
-            if(User.users.containsKey(getEmail()) && User.users.get(getEmail()).equals(getPassword())){
+        } else if (e.getSource() == signInBtn) {
+            // users.get(getEmail()) => returns password
+            if (User.users.containsKey(getEmail()) && User.users.get(getEmail()).equals(getPassword())) {
 
                 User.current_user = new User(getEmail(), getPassword(), User.fetchUserId());
 
                 this.setVisible(false);
-            }else{
+                Solitaire.solitaire = new Solitaire();
+            } else {
                 passwordWarner.setText("");
                 warningLabel.setText("Invalid Email OR Password.");
             }
@@ -261,16 +261,16 @@ public class Login extends JFrame implements ActionListener {
     }
 
     // returns email from JTextField
-    protected static String getEmail(){
+    protected static String getEmail() {
         return emailTxtF.getText();
     }
 
     // returns password from JPasswordField
-    protected String getPassword(){
+    protected String getPassword() {
 
-        try{
+        try {
             return passwordTxtF.getText();
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return "";
         }
     }
