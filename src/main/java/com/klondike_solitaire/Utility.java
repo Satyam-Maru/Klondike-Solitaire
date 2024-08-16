@@ -156,6 +156,9 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         } else if (e.getSource() == statisticsBtn) {
             new Statistics();
         }
+        else if (e.getSource() == leaderboardBtn) {
+            new LeaderBoard();
+        }
     }
 
     @Override
