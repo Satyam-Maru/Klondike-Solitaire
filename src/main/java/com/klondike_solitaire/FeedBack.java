@@ -5,13 +5,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class FeedBack extends JFrame{
     private JTextArea feedbackArea;
-
+    private JPanel panelMain;
     public FeedBack() {
 
         this.setTitle("Game FeedBack");
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(400, 300);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(500, 450);
         this.setVisible(true);
+        panelMain=new JPanel();
+        panelMain.setLayout(new BorderLayout());
 
         feedbackArea = new JTextArea(10, 30);
         feedbackArea.setLineWrap(true);
@@ -26,15 +28,15 @@ public class FeedBack extends JFrame{
             }
         });
 
-        // Layout the components in the frame
-        this.setLayout(new BorderLayout());
+
         JLabel header=new JLabel("Please Provide Your FeedBack");
         header.setFont(new Font("Consalas", Font.BOLD, 25));
         header.setSize(new Dimension(200,300));
-        this.add(header,BorderLayout.NORTH);
-        this.add(scrollPane, BorderLayout.CENTER);
-        this.add(submitButton, BorderLayout.SOUTH);
 
+        panelMain.add(header,BorderLayout.NORTH);
+        panelMain.add(scrollPane, BorderLayout.CENTER);
+        panelMain.add(submitButton, BorderLayout.SOUTH);
+        this.add(panelMain);
     }
 
     private void handleSubmit() {
