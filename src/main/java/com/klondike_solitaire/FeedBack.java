@@ -40,6 +40,8 @@ public class FeedBack extends JFrame {
         // panelMain.add(scrollPane, BorderLayout.CENTER);
         // panelMain.add(submitButton, BorderLayout.SOUTH);
         // this.add(panelMain);
+        initPanel();
+        initFrame();
     }
 
     private void handleSubmit() {
@@ -66,9 +68,20 @@ public class FeedBack extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1020, 650);
         this.setVisible(true);
+
+        this.add(panelMain);
     }
 
     void initPanel() {
 
+        panelMain = new JPanel();
+        panelMain.setLayout(null);
+        panelMain.setBounds(330, 330, 800, 100);
+        panelMain.setBackground(Color.BLACK);
+
+    }
+
+    void label() {
+        feedback = new JLabel("Please , Give Us a Feedback");
     }
 }

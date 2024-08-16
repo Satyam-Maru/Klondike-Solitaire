@@ -10,7 +10,7 @@ public class LeaderBoard extends JFrame {
     private static ImageIcon im;
     private static Image img;
     JLabel image = new JLabel();
-    JLabel rankLable,usernameLable,scoreLable;
+    JLabel rankLable, usernameLable, scoreLable;
 
     static {
         im = new ImageIcon("C:\\Klondike-Solitaire\\src\\main\\java\\com\\Images\\gp.png");
@@ -45,7 +45,6 @@ public class LeaderBoard extends JFrame {
         rankLable.setOpaque(true);
         bluePanel.add(rankLable);
 
-
         usernameLable = new JLabel("UserName");
         usernameLable.setBackground(Color.BLUE);
         usernameLable.setForeground(Color.white);
@@ -54,14 +53,31 @@ public class LeaderBoard extends JFrame {
         usernameLable.setOpaque(true);
         bluePanel.add(usernameLable);
 
-        scoreLable= new JLabel("Score");
+        scoreLable = new JLabel("Score");
         scoreLable.setBackground(Color.BLUE);
         scoreLable.setForeground(Color.white);
-        scoreLable.setFont(new Font("Consalas", Font.BOLD, 25  ));
+        scoreLable.setFont(new Font("Consalas", Font.BOLD, 25));
         scoreLable.setBounds(345, 3, 150, 28);
         scoreLable.setOpaque(true);
         bluePanel.add(scoreLable);
 
+        JTable table = new JTable();
+        table.setBackground(Color.black);
+        table.setBounds(0, 40, 450, 350);
+        table.setFont(new Font("SERIF", Font.PLAIN, 18));
+        panel.add(table);
+        try {
+
+            // table.setModel(DbUtils.resultSetToTableModel());
+            // open comment and rs object in method
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
+        }
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        // scrollPane.setLayout(null);
+        add(scrollPane);
 
         JButton button = new JButton("Back");
         button.setBackground(Color.red);
