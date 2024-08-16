@@ -184,7 +184,6 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     }
 
     boolean ifWin() {
-
         if (new Waste().cards.size() == 0 && new Deck().cards.size() == 0) {
             Stack<Card> temp = new Tableau().cards;
 
