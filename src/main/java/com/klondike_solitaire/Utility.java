@@ -193,7 +193,8 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                     return false;
                 }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 }
