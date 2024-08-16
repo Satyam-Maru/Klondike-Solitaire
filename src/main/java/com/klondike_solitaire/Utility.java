@@ -149,6 +149,9 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
                         prevPile.push(deque.removeFirst());
                         currentPile.pop();
+
+                        prevPile.repaint();
+                        currentPile.repaint();
                     }
                 }
 
