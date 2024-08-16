@@ -20,11 +20,11 @@ public class Login extends JFrame implements ActionListener {
 
     protected static final int frameWidth = 1020, frameHeight = 650;
 
-    static ImageIcon loginFrameLogo = new ImageIcon("filename");
-    ImageIcon solitaireLogo = new ImageIcon("filename");
+    static ImageIcon loginFrameLogo = new ImageIcon("solitare.jpg");
+    ImageIcon solitaireLogo = new ImageIcon("solitare.jpg");
 
     JPanel mainPanel;
-    JLabel stockImgLabel, warningLabel, passwordWarner;
+    JLabel solitaireImageLabel, warningLabel, passwordWarner;
     static JTextField emailTxtF;
     JPasswordField passwordTxtF;
     JButton signUpBtn, signInBtn;
@@ -82,10 +82,15 @@ public class Login extends JFrame implements ActionListener {
         mainPanel.setBackground(Color.CYAN);
 
         // setting the stock register image
-        stockImgLabel = new JLabel();
-        stockImgLabel.setIcon(solitaireLogo);
-        stockImgLabel.setBounds(-30, -9, 350, 440);
-        mainPanel.add(stockImgLabel);
+//        stockImgLabel = new JLabel();
+//        stockImgLabel.setIcon(solitaireLogo);
+//        stockImgLabel.setBounds(-30, -9, 350, 440);
+//        mainPanel.add(stockImgLabel);
+
+        solitaireImageLabel=new JLabel(solitaireLogo);
+//      solitaireImageLabel.setIcon(solitaireLogo);
+        solitaireImageLabel.setBounds(-30,-9,350,440);
+        mainPanel.add(solitaireImageLabel);
 
         setEmailPanel();
         setPasswordPanel();
