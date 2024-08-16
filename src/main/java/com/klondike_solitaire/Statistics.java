@@ -92,7 +92,7 @@ public class Statistics extends JFrame {
 
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         this.setSize(350, 400);
-        this.setLocation(490, 190);
+        this.setLocation(580, 220);
 
         this.setUndecorated(true);
         this.setVisible(true);
