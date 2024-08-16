@@ -184,13 +184,24 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         }
     }
 
-    boolean ifWin() {
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
-        if (new Waste().cards.size() == 0 && new Deck().cards.size() == 0) {
+        Graphics2D g2d = (Graphics2D) g;
+
+        ImageIcon img = new ImageIcon(
+                System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images\\green_background.jpg");
+        g2d.drawImage(img.getImage(), 0, 0, 800, 40, this);
+    }
+
+    protected boolean ifWin() {
+
+        if (GamePanel.getWastePile().cards.isEmpty() && GamePanel.getDeck().cards.isEmpty()) {
             Stack<Card> temp = new Tableau().cards;
 
             for (int i = 0; i < temp.size(); i++) {
-                if (!temp.get(i).isOpen()) {
+                if (!temp.get(i).isFaceUp()) {
                     return false;
                 }
             }
