@@ -60,7 +60,7 @@ public class Login extends JFrame implements ActionListener {
         this.setLayout(null); // managing the layout self
         this.setLocationRelativeTo(null); // sets the frame in center of the window
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.getContentPane().setBackground(Color.CYAN);
+        this.getContentPane().setBackground(Color.GREEN);
         this.add(mainPanel);
 
         // TO-DO apply threading in Database.getConnection()
@@ -78,7 +78,7 @@ public class Login extends JFrame implements ActionListener {
         mainPanel = new JPanel();
         mainPanel.setBounds(170, 80, frameWidth - 170, 420);
         mainPanel.setLayout(null);
-        mainPanel.setBackground(Color.CYAN);
+        mainPanel.setBackground(Color.GREEN);
 
         // setting the stock register image
         // stockImgLabel = new JLabel();
@@ -144,7 +144,7 @@ public class Login extends JFrame implements ActionListener {
         signUpBtn.setMargin(new Insets(3, 5, 0, 5));
         signUpBtn.setFont(new Font("Consolas", Font.BOLD, 16));
         signUpBtn.setForeground(Color.WHITE);
-        signUpBtn.setBackground(new Color(50, 205, 50));
+        signUpBtn.setBackground(Color.BLACK);
         signUpBtn.setFocusable(false);
         signUpBtn.addActionListener(this);
         mainPanel.add(signUpBtn);
@@ -155,7 +155,7 @@ public class Login extends JFrame implements ActionListener {
         signInBtn.setMargin(new Insets(3, 5, 0, 5));
         signInBtn.setFont(new Font("Consolas", Font.BOLD, 16));
         signInBtn.setForeground(Color.WHITE);
-        signInBtn.setBackground(new Color(50, 205, 50));
+        signInBtn.setBackground(Color.BLACK);
         signInBtn.setFocusable(false);
         signInBtn.addActionListener(this);
         mainPanel.add(signInBtn);
