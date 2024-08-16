@@ -13,7 +13,6 @@ public class LeaderBoard extends JFrame {
         im = new ImageIcon("C:\\Klondike-Solitaire\\src\\main\\java\\com\\Images\\gp.png");
         img = im.getImage().getScaledInstance(440, 440, Image.SCALE_DEFAULT);
         im = new ImageIcon(img);
-
     }
 
     LeaderBoard() {

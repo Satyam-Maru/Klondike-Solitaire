@@ -24,10 +24,11 @@ public class Login extends JFrame implements ActionListener {
     ImageIcon solitaireLogo = new ImageIcon("solitare.jpg");
 
     JPanel mainPanel;
-    JLabel solitaireImageLabel, warningLabel, passwordWarner;
+    JLabel solitaireImageLabel, warningLabel, passwordWarner, imageLabel;
     static JTextField emailTxtF;
     JPasswordField passwordTxtF;
     JButton signUpBtn, signInBtn;
+    ImageIcon im = new ImageIcon("C:\\Klondike-Solitaire\\src\\main\\java\\com\\Images\\solitaire.png");
 
     // For Email Validation
     // -----------------------------------------------------------------------------
@@ -42,7 +43,7 @@ public class Login extends JFrame implements ActionListener {
     // -----------------------------------------------------------------------------
 
     Login() {
-
+        image();
         initMainPanel();
         initFrame();
     }
@@ -62,6 +63,7 @@ public class Login extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.CYAN);
         this.add(mainPanel);
+        this.add(imageLabel);
 
         // TO-DO apply threading in Database.getConnection()
         try {
@@ -258,6 +260,11 @@ public class Login extends JFrame implements ActionListener {
 
         Matcher matcher = passwordPattern.matcher(password);
         return matcher.matches();
+    }
+
+    void image() {
+        imageLabel = new JLabel(im);
+        imageLabel.setBounds(0, 50, 400, 400);
     }
 
     // returns email from JTextField
