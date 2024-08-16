@@ -34,7 +34,10 @@ public class Tableau extends Pile {
         g2d.drawLine(0, 0, 0, 96);
         g2d.drawLine(this.getWidth() - 1, 0, this.getWidth() - 1, 96);
 
-        g2d.setPaint(new GradientPaint(36, 0, new Color(255, 255, 255, 160), 36, 60, new Color(0, 0, 0, 0)));
+        g2d.setPaint(
+                new GradientPaint(36, 0,
+                new Color(255, 255, 255, 160), 36, 60,
+                new Color(0, 0, 0, 0)));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 
         int cardYPos = 0;

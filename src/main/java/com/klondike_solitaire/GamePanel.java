@@ -1,11 +1,9 @@
 package com.klondike_solitaire;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
 import java.util.Stack;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class GamePanel extends JPanel {
 
@@ -28,6 +26,8 @@ public class GamePanel extends JPanel {
 		utility.thread.start();
 		add(Utility.getTopPanel());
 		add(Utility.getBottomPanel());
+		Utility.getTopPanel().repaint();
+		Utility.getBottomPanel().repaint();
 		initializePiles();
 		GameMoveListener l = new GameMoveListener();
 		addMouseListener(l);
@@ -73,7 +73,11 @@ public class GamePanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Color.green);
-		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+
+		Graphics2D g2d = (Graphics2D) g;
+
+		ImageIcon img = new ImageIcon(
+				System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images\\green_background.jpg");
+		g2d.drawImage(img.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 }
