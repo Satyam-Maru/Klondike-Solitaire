@@ -15,7 +15,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
     private static JPanel topPanel, bottomPanel;
     JButton leaderboardBtn, statisticsBtn, undoBtn, resetBtn;
-    static  JLabel scoreLabel, scoreValueLabel, moveLabel, moveValueLabel, timeLabel, timeValueLabel;
+    static JLabel scoreLabel, scoreValueLabel, moveLabel, moveValueLabel, timeLabel, timeValueLabel;
     Thread thread;
     int sec = 0, min = 0;
     private boolean showBack;
@@ -124,13 +124,12 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
         if (e.getSource() == undoBtn) {
 
-            if(!GamePanel.undo.isEmpty()){
-                if(Pile.point-20<=0){
-                    Pile.point=0;
+            if (!GamePanel.undo.isEmpty()) {
+                if (Pile.point - 20 <= 0) {
+                    Pile.point = 0;
                     Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
-                }
-                else{
-                    Pile.point-=20;
+                } else {
+                    Pile.point -= 20;
                     Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
                 }
 
@@ -141,7 +140,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 currentPile.pop();
 
                 // to paint the back card
-                if(prevPile instanceof Tableau){
+                if (prevPile instanceof Tableau) {
                     showBack = true;
                 }
 
@@ -149,13 +148,13 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 currentPile.repaint();
                 System.out.println("check");
 
-
             }
-        }
-        else if (e.getSource() == resetBtn) {
+        } else if (e.getSource() == resetBtn) {
             Solitaire.solitaire.dispose();
             thread.interrupt();
             Solitaire.solitaire = new Solitaire();
+        } else if (e.getSource() == statisticsBtn) {
+            new Statistics();
         }
     }
 
