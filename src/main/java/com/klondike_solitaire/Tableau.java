@@ -9,6 +9,9 @@ import java.util.Deque;
 
 public class Tableau extends Pile {
 
+    public Tableau() {
+    }
+
     public Tableau(int x, int y, int initSize) {
         super(x, y);
         super.setSize(72, 450);
@@ -50,8 +53,8 @@ public class Tableau extends Pile {
 
     public void moveFromWaste(Waste source, Card card) {
         if (this.accepts(card)) {
-            point=point+10;
-            Move=Move+1;
+            point = point + 10;
+            Move = Move + 1;
             Utility.moveValueLabel.setText(String.valueOf(Move));
             Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
             this.push(source.pop());
@@ -73,10 +76,10 @@ public class Tableau extends Pile {
     public boolean moveTo(Foundation destination, Card card) {
         if (destination.accepts(card)) {
 
-            point=point+15;
-            Move=Move+1;
+            point = point + 15;
+            Move = Move + 1;
             Utility.moveValueLabel.setText(String.valueOf(Move));
-           Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
+            Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
             destination.push(this.pop());
             GamePanel.undo.add(destination.topCard()); // adding current moved card into undo stack
             GamePanel.undo.peek().prevPile = this;
@@ -92,19 +95,19 @@ public class Tableau extends Pile {
     public void moveTo(Tableau destination, Card card) {
         if (!this.isEmpty() || card.getValue() == 13) {
             if (destination.accepts(card)) {
-                point=point+5;
-                Move=Move+1;
+                point = point + 5;
+                Move = Move + 1;
                 Utility.moveValueLabel.setText(String.valueOf(Move));
                 Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
                 Deque<Card> toBeMovedCards = new ArrayDeque<>();
-                while(!this.isEmpty()) {
+                while (!this.isEmpty()) {
                     Card tmp = this.pop();
                     toBeMovedCards.push(tmp);
-                    if(tmp.equals(card)) {
+                    if (tmp.equals(card)) {
                         break;
                     }
                 }
-                while(!toBeMovedCards.isEmpty()) {
+                while (!toBeMovedCards.isEmpty()) {
                     destination.push(toBeMovedCards.pop());
                     GamePanel.undo.add(destination.topCard()); // adding current moved card into undo stack
                     GamePanel.undo.peek().prevPile = this;
@@ -113,7 +116,7 @@ public class Tableau extends Pile {
             }
         }
 
-        if(!this.isEmpty()) {
+        if (!this.isEmpty()) {
             this.topCard().showFace();
         }
     }

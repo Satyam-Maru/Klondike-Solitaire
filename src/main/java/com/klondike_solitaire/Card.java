@@ -122,4 +122,8 @@ public class Card {
     public void showFace() {
         faceUp = true;
     }
+
+    public boolean isOpen() {
+        return faceUp;
+    }
 }

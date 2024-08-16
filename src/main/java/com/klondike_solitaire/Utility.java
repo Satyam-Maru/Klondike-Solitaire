@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Stack;
 
 public class Utility extends JPanel implements ActionListener, Runnable {
 
@@ -155,8 +156,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
             Solitaire.solitaire = new Solitaire();
         } else if (e.getSource() == statisticsBtn) {
             new Statistics();
-        }
-        else if (e.getSource() == leaderboardBtn) {
+        } else if (e.getSource() == leaderboardBtn) {
             new LeaderBoard();
         }
     }
@@ -181,5 +181,19 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         } catch (InterruptedException e) {
             System.out.println(e);
         }
+    }
+
+    boolean ifWin() {
+
+        if (new Waste().cards.size() == 0 && new Deck().cards.size() == 0) {
+            Stack<Card> temp = new Tableau().cards;
+
+            for (int i = 0; i < temp.size(); i++) {
+                if (!temp.get(i).isOpen()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
