@@ -13,7 +13,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
     // Bottom panel will occupy 800 width and 40 height
 
-    private static JPanel topPanel, bottomPanel;
+    private static Utility topPanel, bottomPanel;
     JButton leaderboardBtn, statisticsBtn, undoBtn, resetBtn;
     static JLabel scoreLabel, scoreValueLabel, moveLabel, moveValueLabel, timeLabel, timeValueLabel;
     Thread thread;
@@ -25,6 +25,10 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         setLabels();
         setTopPanel();
         setBottomPanel();
+    }
+
+    Utility(String img_path){
+
     }
 
     protected void getButtons() {
@@ -48,8 +52,6 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         button = new JButton(name);
         button.setFont(new Font("Rockwell", Font.BOLD, 16));
         button.setForeground(Color.BLACK);
-        button.setBackground(Color.GREEN);
-        // button.setBorderPainted(false);
         button.setContentAreaFilled(false);
         button.setFocusable(false);
         button.addActionListener(this);
@@ -58,9 +60,8 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     }
 
     protected void setTopPanel() {
-        topPanel = new JPanel();
+        topPanel = new Utility("h");
         topPanel.setBounds(0, 0, 800, 40);
-        topPanel.setBackground(Color.GREEN);
         topPanel.setLayout(null);
 
         topPanel.add(leaderboardBtn);
@@ -74,10 +75,9 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     }
 
     protected void setBottomPanel() {
-        bottomPanel = new JPanel();
+        bottomPanel = new Utility("h");
         bottomPanel.setLayout(null);
         bottomPanel.setBounds(0, 560, 800, 40);
-        bottomPanel.setBackground(Color.GREEN);
 
         bottomPanel.add(undoBtn);
         bottomPanel.add(resetBtn);
@@ -142,6 +142,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 // to paint the back card
                 if (prevPile instanceof Tableau) {
                     showBack = true;
+                    System.out.println("Tableau");
                 }
 
                 prevPile.repaint();
@@ -173,7 +174,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                     sec++;
                 }
 
-                timeValueLabel.setText(String.valueOf(min) + " : " + String.valueOf(sec));
+                timeValueLabel.setText(min + ":" + sec);
 
                 Thread.sleep(1000);
             }
@@ -181,5 +182,16 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         } catch (InterruptedException e) {
             System.out.println(e);
         }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g;
+
+        ImageIcon img = new ImageIcon(
+                System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images\\green_background.jpg");
+        g2d.drawImage(img.getImage(), 0, 0, 800, 40, this);
     }
 }
