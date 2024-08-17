@@ -40,7 +40,6 @@ class ds {
 
             if (t.next != null) {
                 t = t.next;
-
             }
         }
         System.out.println(t.data);
@@ -52,7 +51,6 @@ class ds {
         } else {
             if (t.prev != null) {
                 t = t.prev;
-
             }
         }
         System.out.println(t.data);
@@ -64,14 +62,27 @@ class ds {
         }
     }
 
+    void dis(){
+        Node temp =first;
+        while(temp!=null){
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+
     public static void main(String[] args) {
         ds d = new ds();
         d.addLast(1);
         d.addLast(2);
         d.addLast(3);
         d.addLast(4);
+        d.dis();
 
-        System.out.println(d.t.data);
+
+        d.forward();
+        d.forward();
+        d.forward();
         d.forward();
         d.backward();
 
