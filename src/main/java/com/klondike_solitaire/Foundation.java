@@ -25,8 +25,7 @@ public class Foundation extends Pile{
 
 	public void moveFromWaste(Waste source, Card card) {
 		if(accepts(card)) {
-
-				point = point + 20;
+			point = point + 20;
 			Move=Move+1;
 			Utility.moveValueLabel.setText(String.valueOf(Move));
 			Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
@@ -35,6 +34,10 @@ public class Foundation extends Pile{
 			GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
 			GamePanel.undo.peek().prevPile = source;
 			GamePanel.undo.peek().currentPile = this;
+
+			if(Utility.ifWin()){
+				System.out.println("You won");
+			}
 			source = null;
 		}
 	}

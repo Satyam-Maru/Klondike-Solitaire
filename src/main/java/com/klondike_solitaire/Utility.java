@@ -158,7 +158,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
                 prevPile.repaint();
                 currentPile.repaint();
-                System.out.println("check");
+//                System.out.println("check");
 
                 if(undoCounts == 2){
                     undoBtn.setEnabled(false);
@@ -209,16 +209,18 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         g2d.drawImage(img.getImage(), 0, 0, 800, 40, this);
     }
 
-    protected boolean ifWin() {
+    protected static boolean ifWin() {
 
         if (GamePanel.getWastePile().cards.isEmpty() && GamePanel.getDeck().cards.isEmpty()) {
-            Stack<Card> temp = new Tableau().cards;
 
-            for (int i = 0; i < temp.size(); i++) {
-                if (!temp.get(i).isFaceUp()) {
-                    return false;
+            for (Tableau tableau: GamePanel.getTableau()){
+                for(int i = 0; i < tableau.cards.size(); i++){
+                    if(!tableau.cards.get(i).isFaceUp()){
+                        return false;
+                    }
                 }
             }
+
             return true;
         }
         return false;

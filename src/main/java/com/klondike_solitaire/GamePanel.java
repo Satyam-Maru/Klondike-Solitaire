@@ -62,6 +62,8 @@ public class GamePanel extends JPanel {
 		return foundationPiles;
 	}
 
+	public static Tableau[] getTableau() {return tableau; }
+
 	public static Waste getWastePile() {
 		return waste;
 	}

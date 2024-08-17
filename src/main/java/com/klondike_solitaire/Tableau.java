@@ -71,6 +71,10 @@ public class Tableau extends Pile {
             GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
             GamePanel.undo.peek().prevPile = source;
             GamePanel.undo.peek().currentPile = this;
+
+            if(Utility.ifWin()){
+                System.out.println("You won");
+            }
         }
         source = null;
     }
