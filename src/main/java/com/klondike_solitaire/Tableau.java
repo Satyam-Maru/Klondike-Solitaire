@@ -60,14 +60,15 @@ public class Tableau extends Pile {
         if (this.accepts(card)) {
             User.score += 10;
             User.moves += 1;
-            Utility.moveValueLabel.setText(String.valueOf(User.score));
-            Utility.scoreValueLabel.setText(String.valueOf(User.moves));
+            Utility.moveValueLabel.setText(String.valueOf(User.moves));
+            Utility.scoreValueLabel.setText(String.valueOf(User.score));
             this.push(source.pop());
             GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
             GamePanel.undo.peek().prevPile = source;
             GamePanel.undo.peek().currentPile = this;
 
             if(Utility.ifWin()){
+                System.out.println("You won");
                 User.updateGameWonAttributes();
                 WinningPopup.showWinningPopup();
             }

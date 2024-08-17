@@ -37,6 +37,7 @@ public class Foundation extends Pile{
 			GamePanel.undo.peek().currentPile = this;
 
 			if(Utility.ifWin()){
+				System.out.println("you won");
 				User.updateGameWonAttributes();
 				WinningPopup.showWinningPopup();
 			}

@@ -134,22 +134,24 @@ public class User {
             Database.pst.setInt(1, ++game_won);
             Database.pst.setInt(4, getUserId());
 
-            String[] best_timeChecker = best_time.split(":");
-            String[] current_timeChecker = Utility.timeValueLabel.getText().split(":");
-
             if(best_time == null){
                 Database.pst.setString(2, Utility.timeValueLabel.getText());
-            }
-            else if(Integer.parseInt(current_timeChecker[0]) < Integer.parseInt(best_timeChecker[0])){
-                Database.pst.setString(2, Utility.timeValueLabel.getText());
-            }
-            else if(Integer.parseInt(current_timeChecker[0]) == Integer.parseInt(best_timeChecker[0])){
+            }else{
 
-                if(Integer.parseInt(current_timeChecker[1]) < Integer.parseInt(best_timeChecker[1])){
+                String[] best_timeChecker = best_time.split(":");
+                String[] current_timeChecker = Utility.timeValueLabel.getText().split(":");
+
+                if(Integer.parseInt(current_timeChecker[0]) < Integer.parseInt(best_timeChecker[0])){
                     Database.pst.setString(2, Utility.timeValueLabel.getText());
                 }
-            }else{
-                Database.pst.setString(2, best_time);
+                else if(Integer.parseInt(current_timeChecker[0]) == Integer.parseInt(best_timeChecker[0])){
+
+                    if(Integer.parseInt(current_timeChecker[1]) < Integer.parseInt(best_timeChecker[1])){
+                        Database.pst.setString(2, Utility.timeValueLabel.getText());
+                    }
+                }else{
+                    Database.pst.setString(2, best_time);
+                }
             }
 
             if(best_score == 0){
