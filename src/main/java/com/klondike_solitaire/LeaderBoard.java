@@ -9,8 +9,7 @@ public class LeaderBoard extends JFrame {
     JPanel panel;
     private static ImageIcon im;
     private static Image img;
-    JLabel image = new JLabel();
-    JLabel rankLable, usernameLable, scoreLable;
+    JLabel rankLabel, userNameLabel, scoreLabel;
 
     static {
         im = new ImageIcon("C:\\Klondike-Solitaire\\src\\main\\java\\com\\Images\\gp.png");
@@ -37,29 +36,29 @@ public class LeaderBoard extends JFrame {
         bluePanel.setLayout(null);
         panel.add(bluePanel);
 
-        rankLable = new JLabel("Rank");
-        rankLable.setBackground(Color.BLUE);
-        rankLable.setForeground(Color.white);
-        rankLable.setFont(new Font("Consalas", Font.BOLD, 25));
-        rankLable.setBounds(15, 3, 120, 28);
-        rankLable.setOpaque(true);
-        bluePanel.add(rankLable);
+        rankLabel = new JLabel("Rank");
+        rankLabel.setBackground(Color.BLUE);
+        rankLabel.setForeground(Color.white);
+        rankLabel.setFont(new Font("Consalas", Font.BOLD, 25));
+        rankLabel.setBounds(15, 3, 120, 28);
+        rankLabel.setOpaque(true);
+        bluePanel.add(rankLabel);
 
-        usernameLable = new JLabel("UserName");
-        usernameLable.setBackground(Color.BLUE);
-        usernameLable.setForeground(Color.white);
-        usernameLable.setFont(new Font("Consalas", Font.BOLD, 25));
-        usernameLable.setBounds(150, 3, 180, 28);
-        usernameLable.setOpaque(true);
-        bluePanel.add(usernameLable);
+        userNameLabel = new JLabel("UserName");
+        userNameLabel.setBackground(Color.BLUE);
+        userNameLabel.setForeground(Color.white);
+        userNameLabel.setFont(new Font("Consalas", Font.BOLD, 25));
+        userNameLabel.setBounds(150, 3, 180, 28);
+        userNameLabel.setOpaque(true);
+        bluePanel.add(userNameLabel);
 
-        scoreLable = new JLabel("Score");
-        scoreLable.setBackground(Color.BLUE);
-        scoreLable.setForeground(Color.white);
-        scoreLable.setFont(new Font("Consalas", Font.BOLD, 25));
-        scoreLable.setBounds(345, 3, 150, 28);
-        scoreLable.setOpaque(true);
-        bluePanel.add(scoreLable);
+        scoreLabel = new JLabel("Score");
+        scoreLabel.setBackground(Color.BLUE);
+        scoreLabel.setForeground(Color.white);
+        scoreLabel.setFont(new Font("Consalas", Font.BOLD, 25));
+        scoreLabel.setBounds(345, 3, 150, 28);
+        scoreLabel.setOpaque(true);
+        bluePanel.add(scoreLabel);
 
         JTable table = new JTable();
         table.setBackground(Color.black);

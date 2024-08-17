@@ -16,6 +16,7 @@ public class Card {
     private boolean faceUp;
     private Colour colour;
     protected Pile prevPile, currentPile;
+    protected boolean undoContainsMoreThanOneCard;
 
     public Card(int value, Suit suit) {
         this.value = value;

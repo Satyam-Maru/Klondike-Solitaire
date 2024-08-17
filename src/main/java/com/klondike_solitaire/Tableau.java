@@ -133,12 +133,13 @@ public class Tableau extends Pile {
                     GamePanel.undo.push(temp.getFirst()); // for storing single cards
                     GamePanel.undo.peek().prevPile = temp.getFirst().prevPile;
                     GamePanel.undo.peek().currentPile = temp.getLast().currentPile;
-
+                    Card checker = GamePanel.undo.peek();
                     temp.removeFirst();
 
                     // check if to be moved cards are more than one
                     if(!temp.isEmpty()){
                         multipleCardStack = new ArrayDeque<>();
+                        checker.undoContainsMoreThanOneCard = true;
                         while (!temp.isEmpty()){
                             multipleCardStack.addLast(temp.getFirst()); // for storing single cards
                             multipleCardStack.getLast().prevPile = temp.getFirst().prevPile;

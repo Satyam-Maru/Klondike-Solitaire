@@ -137,11 +137,11 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
                 Pile prevPile = GamePanel.undo.peek().prevPile;
                 Pile currentPile = GamePanel.undo.peek().currentPile;
-
+                Card checker = GamePanel.undo.peek();
                 prevPile.push(GamePanel.undo.pop());
                 currentPile.pop();
 
-                if(!Tableau.parentCardStack.isEmpty()){
+                if(checker.undoContainsMoreThanOneCard && !Tableau.parentCardStack.isEmpty()){
                     ArrayDeque<Card> deque = (ArrayDeque<Card>) Tableau.parentCardStack.pop();
                     while (!deque.isEmpty()){
                         prevPile = deque.getFirst().prevPile;
