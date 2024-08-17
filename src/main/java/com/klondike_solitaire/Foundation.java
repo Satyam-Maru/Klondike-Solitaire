@@ -1,5 +1,5 @@
 package com.klondike_solitaire;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class Foundation extends Pile{
 	
@@ -14,21 +14,22 @@ public class Foundation extends Pile{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
 		if(this.isEmpty()) {
-			g.drawImage(Card.getFoundationBase(suit), 0, 0,
-					this.getWidth(), this.getHeight(), this);
+			g2d.drawImage(Card.getFoundationBase(suit), 0, 0,	this.getWidth(), this.getHeight(), this);
 		}else {
-			g.drawImage(this.topCard().getCardImage(),
-					0, 0, this.getWidth(), this.getHeight(), this);
+			g2d.drawImage(this.topCard().getCardImage(),0, 0, this.getWidth(), this.getHeight(), this);
 		}
 	}
 
 	public void moveFromWaste(Waste source, Card card) {
 		if(accepts(card)) {
-			point = point + 20;
-			Move=Move+1;
-			Utility.moveValueLabel.setText(String.valueOf(Move));
-			Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
+			User.score += 20;
+			User.moves += 1;
+			Utility.moveValueLabel.setText(String.valueOf(User.moves));
+			Utility.scoreValueLabel.setText(String.valueOf(User.score));
 
 			this.push(source.pop());
 			GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
@@ -36,7 +37,7 @@ public class Foundation extends Pile{
 			GamePanel.undo.peek().currentPile = this;
 
 			if(Utility.ifWin()){
-				System.out.println("You won");
+				new WinningPopup();
 			}
 			source = null;
 		}
@@ -44,6 +45,10 @@ public class Foundation extends Pile{
 	
 	public void moveTo(Tableau destination, Card card) {
 		if(destination.accepts(card)) {
+			User.score += 20;
+			User.moves += 1;
+			Utility.moveValueLabel.setText(String.valueOf(User.moves));
+			Utility.scoreValueLabel.setText(String.valueOf(User.score));
 			destination.push(this.pop());
 			GamePanel.undo.add(destination.topCard()); // adding current moved card into undo stack
 			GamePanel.undo.peek().prevPile = this;

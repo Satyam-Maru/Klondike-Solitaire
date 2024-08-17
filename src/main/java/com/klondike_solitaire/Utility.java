@@ -128,13 +128,12 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
             if (!GamePanel.undo.isEmpty() && undoCounts < 3) {
                 undoCounts++;
-                if (Pile.point - 20 <= 0) {
-                    Pile.point = 0;
-                    Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
+                if (User.score > 20) {
+                    User.score -= 20;
                 } else {
-                    Pile.point -= 20;
-                    Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
+                    User.score = 0;
                 }
+                Utility.scoreValueLabel.setText(String.valueOf(User.score));
 
                 Pile prevPile = GamePanel.undo.peek().prevPile;
                 Pile currentPile = GamePanel.undo.peek().currentPile;
@@ -167,6 +166,8 @@ public class Utility extends JPanel implements ActionListener, Runnable {
             }
         } else if (e.getSource() == resetBtn) {
             Solitaire.solitaire.dispose();
+            User.score = 0;
+            User.moves = 0;
             thread.interrupt();
             Solitaire.solitaire = new Solitaire();
         } else if (e.getSource() == statisticsBtn) {
@@ -203,6 +204,8 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
 
         ImageIcon img = new ImageIcon(
                 System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images\\green_background.jpg");

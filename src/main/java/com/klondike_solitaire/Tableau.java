@@ -1,9 +1,6 @@
 package com.klondike_solitaire;
 
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Stack;
@@ -15,9 +12,6 @@ public class Tableau extends Pile {
     static protected Stack<Deque<Card>> parentCardStack = new Stack<>();
     static protected Deque<Card> multipleCardStack;
     // -------------------------------------------------------
-
-    public Tableau() {
-    }
 
     public Tableau(int x, int y, int initSize) {
         super(x, y);
@@ -40,7 +34,8 @@ public class Tableau extends Pile {
         g2d.drawLine(0, 0, this.getWidth(), 0);
         g2d.drawLine(0, 0, 0, 96);
         g2d.drawLine(this.getWidth() - 1, 0, this.getWidth() - 1, 96);
-
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
         g2d.setPaint(
                 new GradientPaint(36, 0,
                 new Color(255, 255, 255, 160), 36, 60,
@@ -63,17 +58,17 @@ public class Tableau extends Pile {
 
     public void moveFromWaste(Waste source, Card card) {
         if (this.accepts(card)) {
-            point = point + 10;
-            Move = Move + 1;
-            Utility.moveValueLabel.setText(String.valueOf(Move));
-            Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
+            User.score += 10;
+            User.moves += 1;
+            Utility.moveValueLabel.setText(String.valueOf(User.score));
+            Utility.scoreValueLabel.setText(String.valueOf(User.moves));
             this.push(source.pop());
             GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
             GamePanel.undo.peek().prevPile = source;
             GamePanel.undo.peek().currentPile = this;
 
             if(Utility.ifWin()){
-                System.out.println("You won");
+                new WinningPopup();
             }
         }
         source = null;
@@ -90,10 +85,10 @@ public class Tableau extends Pile {
     public boolean moveTo(Foundation destination, Card card) {
         if (destination.accepts(card)) {
 
-            point = point + 15;
-            Move = Move + 1;
-            Utility.moveValueLabel.setText(String.valueOf(Move));
-            Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
+            User.score += 15;
+            User.moves += 1;
+            Utility.moveValueLabel.setText(String.valueOf(User.moves));
+            Utility.scoreValueLabel.setText(String.valueOf(User.score));
             destination.push(this.pop());
             GamePanel.undo.add(destination.topCard()); // adding current moved card into undo stack
             GamePanel.undo.peek().prevPile = this;
@@ -109,10 +104,10 @@ public class Tableau extends Pile {
     public void moveTo(Tableau destination, Card card) {
         if (!this.isEmpty() || card.getValue() == 13) {
             if (destination.accepts(card)) {
-                point = point + 5;
-                Move = Move + 1;
-                Utility.moveValueLabel.setText(String.valueOf(Move));
-                Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
+                User.score += 5;
+                User.moves += 1;
+                Utility.moveValueLabel.setText(String.valueOf(User.moves));
+                Utility.scoreValueLabel.setText(String.valueOf(User.score));
                 ArrayDeque<Card> toBeMovedCards = new ArrayDeque<>();
                 while (!this.isEmpty()) {
                     Card tmp = this.pop();
