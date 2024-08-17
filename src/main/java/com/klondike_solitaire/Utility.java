@@ -168,6 +168,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
             Solitaire.solitaire.dispose();
             User.score = 0;
             User.moves = 0;
+            User.updateGamePlayed();
             thread.interrupt();
             Solitaire.solitaire = new Solitaire();
         } else if (e.getSource() == statisticsBtn) {

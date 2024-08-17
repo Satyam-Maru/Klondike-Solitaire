@@ -9,6 +9,7 @@ public class User {
     protected static String username, password;
     protected static int user_id, moves, score;
     protected static User current_user;
+    protected static int game_played, game_won, best_time, best_score;
 
     // DS
     // -----------------------------------------------------------------------------
@@ -83,6 +84,30 @@ public class User {
                 users.put(username, password);
             }
 
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    protected static void updateGamePlayed(){
+
+        try{
+            String getGamePlayed = "SELECT game_played FROM statistics WHERE user_id = (?)";
+            Database.prepareStatement(getGamePlayed);
+            Database.pst.setInt(1, getUserId());
+
+            ResultSet rs = Database.pst.executeQuery();
+
+            while (rs.next()){
+                game_played = rs.getInt("game_played");
+            }
+
+            String updateGamePlayed = "UPDATE statistics SET game_played = (?) WHERE user_id = (?)";
+            Database.prepareStatement(updateGamePlayed);
+            Database.pst.setInt(1, ++game_played);
+            Database.pst.setInt(2, getUserId());
+
+            Database.pst.executeUpdate();
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }
