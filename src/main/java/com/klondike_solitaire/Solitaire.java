@@ -6,7 +6,7 @@ import java.awt.*;
 public class Solitaire extends JFrame {
 
     protected static GamePanel gamePanel;
-    protected static final int PANEL_WIDTH = 800, PANEL_HEIGHT = 600;
+    protected static final int PANEL_WIDTH = 800, PANEL_HEIGHT = 600; 
     protected static Solitaire solitaire;
 
     public Solitaire() {
