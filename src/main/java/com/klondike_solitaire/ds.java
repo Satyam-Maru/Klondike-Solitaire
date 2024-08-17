@@ -15,12 +15,14 @@ class ds {
     }
 
     Node first = null;
+    Node t;
 
     void addLast(int data) {
+        Node n = new Node(data);
         if (first == null) {
-            System.out.printf("LL Empty");
+            first = n;
+            t = first;
         } else {
-            Node n = new Node(data);
             Node temp = first;
 
             while (temp.next != null) {
@@ -32,30 +34,46 @@ class ds {
     }
 
     void forward() {
-        Node temp=first;
         if (first == null) {
             System.out.printf("LL Empty");
-        }
-        else {
+        } else {
 
-            if(temp.next!=null){
-                temp=temp.next;
-                forward();
+            if (t.next != null) {
+                t = t.next;
+
             }
         }
+        System.out.println(t.data);
     }
 
     void backward() {
-        Node temp=first;
         if (first == null) {
             System.out.printf("LL Empty");
-        }
-        else {
+        } else {
+            if (t.prev != null) {
+                t = t.prev;
 
-            if(temp.prev!=null){
-                temp=temp.prev;
-                backward();
             }
         }
+        System.out.println(t.data);
+    }
+
+    void x() {
+        while (t != null) {
+            System.out.println(t);
+        }
+    }
+
+    public static void main(String[] args) {
+        ds d = new ds();
+        d.addLast(1);
+        d.addLast(2);
+        d.addLast(3);
+        d.addLast(4);
+
+        System.out.println(d.t.data);
+        d.forward();
+        d.backward();
+
     }
 }
