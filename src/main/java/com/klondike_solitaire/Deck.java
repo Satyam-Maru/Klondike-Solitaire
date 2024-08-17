@@ -10,9 +10,6 @@ public class Deck extends Pile implements ActionListener {
 
     JButton resetBtn = null;
 
-    public Deck() {
-    }
-
     public Deck(int x, int y) {
 
         super(x, y);
@@ -66,6 +63,9 @@ public class Deck extends Pile implements ActionListener {
         if (e.getSource() == resetBtn) {
             while (!GamePanel.getWastePile().isEmpty()) {
                 push(GamePanel.getWastePile().pop());
+            }
+            if(User.score > 20){
+                User.score -= 40;
             }
             this.repaint();
             GamePanel.getWastePile().repaint();

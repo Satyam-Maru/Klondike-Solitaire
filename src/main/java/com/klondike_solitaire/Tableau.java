@@ -16,9 +16,6 @@ public class Tableau extends Pile {
     static protected Deque<Card> multipleCardStack;
     // -------------------------------------------------------
 
-    public Tableau() {
-    }
-
     public Tableau(int x, int y, int initSize) {
         super(x, y);
         super.setSize(72, 450);
@@ -63,10 +60,10 @@ public class Tableau extends Pile {
 
     public void moveFromWaste(Waste source, Card card) {
         if (this.accepts(card)) {
-            point = point + 10;
-            Move = Move + 1;
-            Utility.moveValueLabel.setText(String.valueOf(Move));
-            Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
+            User.score += 10;
+            User.moves += 1;
+            Utility.moveValueLabel.setText(String.valueOf(User.score));
+            Utility.scoreValueLabel.setText(String.valueOf(User.moves));
             this.push(source.pop());
             GamePanel.undo.add(this.topCard()); // adding current moved card into undo stack
             GamePanel.undo.peek().prevPile = source;
@@ -90,10 +87,10 @@ public class Tableau extends Pile {
     public boolean moveTo(Foundation destination, Card card) {
         if (destination.accepts(card)) {
 
-            point = point + 15;
-            Move = Move + 1;
-            Utility.moveValueLabel.setText(String.valueOf(Move));
-            Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
+            User.score += 15;
+            User.moves += 1;
+            Utility.moveValueLabel.setText(String.valueOf(User.moves));
+            Utility.scoreValueLabel.setText(String.valueOf(User.score));
             destination.push(this.pop());
             GamePanel.undo.add(destination.topCard()); // adding current moved card into undo stack
             GamePanel.undo.peek().prevPile = this;
@@ -109,10 +106,10 @@ public class Tableau extends Pile {
     public void moveTo(Tableau destination, Card card) {
         if (!this.isEmpty() || card.getValue() == 13) {
             if (destination.accepts(card)) {
-                point = point + 5;
-                Move = Move + 1;
-                Utility.moveValueLabel.setText(String.valueOf(Move));
-                Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
+                User.score += 5;
+                User.moves += 1;
+                Utility.moveValueLabel.setText(String.valueOf(User.moves));
+                Utility.scoreValueLabel.setText(String.valueOf(User.score));
                 ArrayDeque<Card> toBeMovedCards = new ArrayDeque<>();
                 while (!this.isEmpty()) {
                     Card tmp = this.pop();

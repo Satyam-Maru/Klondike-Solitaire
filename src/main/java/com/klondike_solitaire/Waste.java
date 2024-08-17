@@ -4,9 +4,6 @@ import java.awt.Graphics;
 
 public class Waste extends Pile {
 
-    public Waste() {
-    }
-
     public Waste(int x, int y) {
         super(x, y);
         super.setSize(72, 96);

@@ -10,6 +10,7 @@ public class User {
     protected static String password;
     protected static int user_id;
     static User current_user;
+    protected static int moves, score;
 
     // DS
     // -----------------------------------------------------------------------------

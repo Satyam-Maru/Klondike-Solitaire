@@ -7,13 +7,8 @@ import javax.swing.JPanel;
 public class Pile extends JPanel {
 
     // protected int x, y;
-    protected static int point = 0;
-    protected static int Move = 0;
     protected Stack<Card> cards;
     protected static Stack<Card> moves;
-
-    public Pile() {
-    }
 
     public Pile(int x, int y) {
         super.setLocation(x, y);
