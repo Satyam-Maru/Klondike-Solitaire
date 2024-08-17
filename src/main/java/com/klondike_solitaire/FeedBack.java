@@ -39,7 +39,8 @@ public class FeedBack extends JFrame {
     void initFrame() {
         this.setTitle("Game FeedBack");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 500);
+        this.setSize(450, 500);
+        setLocation(430, 200);
 
         this.add(panelMain);
         this.setVisible(true);
@@ -50,7 +51,7 @@ public class FeedBack extends JFrame {
 
         panelMain = new JPanel();
         panelMain.setLayout(null);
-        panelMain.setBounds(330, 330, 500, 600);
+        panelMain.setBounds(330, 330, 450, 500);
         panelMain.setBackground(new Color(123, 50, 250));
 
         panelMain.add(feedback);
@@ -60,13 +61,13 @@ public class FeedBack extends JFrame {
     }
 
     void label() {
-        feedback = new JLabel("Please , Give Us a Feedback");
-        feedback.setBounds(17, 40, 500, 100);
+        feedback = new JLabel("Provide Us a Feedback");
+        feedback.setBounds(20, 0, 500, 100);
         feedback.setForeground(Color.BLACK);
-        feedback.setFont(new Font("Consolas", Font.PLAIN, 27));
+        feedback.setFont(new Font("Consolas", Font.BOLD, 32));
 
         textArea = new JTextArea();
-        textArea.setBounds(17, 110, 450, 160);
+        textArea.setBounds(20, 70, 400, 320);
         textArea.setForeground(Color.black);
         textArea.setBorder(BorderFactory.createEmptyBorder());
         textArea.setFont(new Font(null, Font.PLAIN, 20));
@@ -77,7 +78,7 @@ public class FeedBack extends JFrame {
     JButton submitButton = new JButton("Submit");
 
     void button() {
-        submitButton.setBounds(180, 300, 100, 30);
+        submitButton.setBounds(160, 410, 100, 30);
         submitButton.setFocusable(false);
         submitButton.addActionListener(new ActionListener() {
             @Override
