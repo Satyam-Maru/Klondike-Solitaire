@@ -190,6 +190,7 @@ public class Login extends JFrame implements ActionListener {
                         Database.pst.executeUpdate();
 
                         User.updateGamePlayed();
+                        User.initUserAttributes();
 
                     } catch (SQLException ex) {
                         System.out.println(ex.getMessage());
@@ -216,6 +217,7 @@ public class Login extends JFrame implements ActionListener {
                 User.current_user = new User(getUsername(), getPassword(), User.fetchUserId());
 
                 User.updateGamePlayed();
+                User.initUserAttributes();
 
                 this.setVisible(false);
                 Solitaire.solitaire = new Solitaire();

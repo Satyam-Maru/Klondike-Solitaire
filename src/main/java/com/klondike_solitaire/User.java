@@ -117,19 +117,19 @@ public class User {
     protected static void updateGameWonAttributes(){
 
         try{
-            String getGameWon = "SELECT game_won, best_time, best_score FROM statistics WHERE user_id = (?)";
-            Database.prepareStatement(getGameWon);
-            Database.pst.setInt(1, getUserId());
+//            String getGameWon = "SELECT game_won, best_time, best_score FROM statistics WHERE user_id = (?)";
+//            Database.prepareStatement(getGameWon);
+//            Database.pst.setInt(1, getUserId());
+//
+//            ResultSet rs = Database.pst.executeQuery();
+//
+//            while (rs.next()){
+//                game_won = rs.getInt("game_won");
+//                best_time = rs.getString("best_time");
+//                best_score = rs.getInt("best_score");
+//            }
 
-            ResultSet rs = Database.pst.executeQuery();
-
-            while (rs.next()){
-                game_won = rs.getInt("game_won");
-                best_time = rs.getString("best_time");
-                best_score = rs.getInt("best_score");
-            }
-
-            String updateGameWon = "UPDATE statistics SET game_won, best_time, best_score = (?, ?, ?) WHERE user_id = (?)";
+            String updateGameWon = "UPDATE statistics SET game_won = (?), best_time = (?), best_score = (?) WHERE user_id = (?)";
             Database.prepareStatement(updateGameWon);
             Database.pst.setInt(1, ++game_won);
             Database.pst.setInt(4, getUserId());
@@ -157,15 +157,28 @@ public class User {
             if(best_score == 0){
                 Database.pst.setInt(3, Integer.parseInt(Utility.scoreValueLabel.getText()));
             }
-            else if (Integer.parseInt(Utility.scoreValueLabel.getText()) > best_score) {
-                Database.pst.setInt(3, Integer.parseInt(Utility.scoreValueLabel.getText()));
-            }
-            else{
-                Database.pst.setInt(3, best_score);
-            }
+            else Database.pst.setInt(3, Math.max(Integer.parseInt(Utility.scoreValueLabel.getText()), best_score));
 
             Database.pst.executeUpdate(); // best-time updated if required
         }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    protected static void initUserAttributes(){
+        try{
+            String getGameWon = "SELECT game_won, best_time, best_score FROM statistics WHERE user_id = (?)";
+            Database.prepareStatement(getGameWon);
+            Database.pst.setInt(1, getUserId());
+
+            ResultSet rs = Database.pst.executeQuery();
+
+            while (rs.next()){
+                game_won = rs.getInt("game_won");
+                best_time = rs.getString("best_time");
+                best_score = rs.getInt("best_score");
+            }
+        }catch(SQLException e){
             System.out.println(e.getMessage());
         }
     }

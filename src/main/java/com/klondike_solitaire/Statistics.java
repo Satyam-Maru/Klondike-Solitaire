@@ -10,8 +10,8 @@ import javax.swing.*;
 public class Statistics extends JFrame {
 
     // private JButton back;
-    private JLabel statisticsLabel, gamePlayedLabel, gameWonLabel, bestTimeLabel, totalMoveLabel, bestScoreLabel;
-    private JPanel panel;
+    protected JLabel statisticsLabel, gamePlayedLabel, gameWonLabel, bestTimeLabel, totalMoveLabel, bestScoreLabel;
+    protected JPanel panel;
 
     public Statistics() {
 
