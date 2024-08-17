@@ -68,7 +68,8 @@ public class Tableau extends Pile {
             GamePanel.undo.peek().currentPile = this;
 
             if(Utility.ifWin()){
-                new WinningPopup();
+                User.updateGameWonAttributes();
+                WinningPopup.showWinningPopup();
             }
         }
         source = null;
