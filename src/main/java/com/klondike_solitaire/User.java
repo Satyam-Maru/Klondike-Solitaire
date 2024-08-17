@@ -9,7 +9,8 @@ public class User {
     protected static String username, password;
     protected static int user_id, moves, score;
     protected static User current_user;
-    protected static int game_played, game_won, best_time, best_score;
+    protected static int game_played, game_won, best_score;
+    protected static String best_time;
 
     // DS
     // -----------------------------------------------------------------------------
@@ -50,7 +51,7 @@ public class User {
 
             ResultSet rs = Database.pst.executeQuery();
 
-            while (rs.next()){
+            if (rs.next()){
                 user_id = rs.getInt("user_id");
             }
 
@@ -106,6 +107,33 @@ public class User {
             Database.prepareStatement(updateGamePlayed);
             Database.pst.setInt(1, ++game_played);
             Database.pst.setInt(2, getUserId());
+
+            Database.pst.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    protected static void updateGameWonAttributes(){
+
+        try{
+            String getGameWon = "SELECT game_won, best_time, best_score FROM statistics WHERE user_id = (?)";
+            Database.prepareStatement(getGameWon);
+            Database.pst.setInt(1, getUserId());
+
+            ResultSet rs = Database.pst.executeQuery();
+
+            while (rs.next()){
+                game_won = rs.getInt("game_won");
+                best_time = rs.getString("best_time");
+                best_score = rs.getInt("best_score");
+            }
+
+            String updateGameWon = "UPDATE statistics SET game_won, best_time, best_score = (?, ?, ?) WHERE user_id = (?)";
+            Database.prepareStatement(updateGameWon);
+            Database.pst.setInt(1, ++game_won);
+            Database.pst.setInt(4, getUserId());
+
 
             Database.pst.executeUpdate();
         }catch (SQLException e){
