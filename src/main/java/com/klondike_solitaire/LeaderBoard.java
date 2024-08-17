@@ -74,10 +74,10 @@ public class LeaderBoard extends JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
-        JScrollPane scrollPane = new JScrollPane(table);
-
-        // scrollPane.setLayout(null);
-        add(scrollPane);
+//        JScrollPane scrollPane = new JScrollPane(table);
+//
+//        // scrollPane.setLayout(null);
+//        add(scrollPane);
 
         JButton button = new JButton("Back");
         button.setBackground(Color.red);
