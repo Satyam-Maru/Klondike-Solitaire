@@ -150,6 +150,11 @@ public class Tableau extends Pile {
                         parentCardStack.push(multipleCardStack);
                     }
                 }
+                if(Utility.ifWin()){
+                    System.out.println("You won");
+                    User.updateGameWonAttributes();
+                    WinningPopup.showWinningPopup();
+                }
             }
         }
 
