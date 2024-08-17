@@ -2,7 +2,6 @@ package com.klondike_solitaire;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,7 +10,7 @@ import javax.swing.*;
 public class Statistics extends JFrame {
 
     // private JButton back;
-    private JLabel statisticsLable, gameplayedLable, gameWonLable, besttimeLale, totalmoveLable, bestscoreLable;
+    private JLabel statisticsLabel, gamePlayedLabel, gameWonLabel, bestTimeLabel, totalMoveLabel, bestScoreLabel;
     private JPanel panel;
 
     public Statistics() {
@@ -24,57 +23,33 @@ public class Statistics extends JFrame {
 
         JPanel statisticsPanel = new JPanel();
         statisticsPanel.setBackground(Color.BLUE);
-        statisticsPanel.setBounds(0, 0, 350, 35);
         statisticsPanel.setLayout(null);
+        statisticsPanel.setBounds(0, 0, 350, 35);
         panel.add(statisticsPanel);
 
-        statisticsLable = new JLabel("STATISTICS");
-        statisticsLable.setBackground(Color.BLUE);
-        statisticsLable.setForeground(Color.white);
-        statisticsLable.setFont(new Font("Consalas", Font.BOLD, 30));
-        statisticsLable.setBounds(80, 5, 340, 34);
-        statisticsLable.setOpaque(true);
-        statisticsPanel.add(statisticsLable);
+        statisticsLabel = initPanel(statisticsLabel, "STATISTICS");
+        statisticsLabel.setBounds(80, 5, 340, 34);
+        statisticsPanel.add(statisticsLabel);
 
-        gameplayedLable = new JLabel("Game Played :");
-        gameplayedLable.setBackground(Color.black);
-        gameplayedLable.setForeground(Color.white);
-        gameplayedLable.setFont(new Font("Consalas", Font.BOLD, 18));
-        gameplayedLable.setBounds(20, 80, 200, 20);
-        gameplayedLable.setOpaque(true);
-        panel.add(gameplayedLable);
+        gamePlayedLabel = initPanel(gamePlayedLabel, "Game Played:");
+        gamePlayedLabel.setBounds(20, 80, 200, 20);
+        panel.add(gamePlayedLabel);
 
-        gameWonLable = new JLabel("Game Won:");
-        gameWonLable.setBackground(Color.black);
-        gameWonLable.setForeground(Color.white);
-        gameWonLable.setFont(new Font("Consalas", Font.BOLD, 18));
-        gameWonLable.setBounds(20, 130, 200, 20);
-        gameWonLable.setOpaque(true);
-        panel.add(gameWonLable);
+        gameWonLabel = initPanel(gameWonLabel ,"Game Won:");
+        gameWonLabel.setBounds(20, 130, 200, 20);
+        panel.add(gameWonLabel);
 
-        besttimeLale = new JLabel("Best Time:");
-        besttimeLale.setBackground(Color.black);
-        besttimeLale.setForeground(Color.white);
-        besttimeLale.setFont(new Font("Consalas", Font.BOLD, 18));
-        besttimeLale.setBounds(20, 180, 200, 20);
-        besttimeLale.setOpaque(true);
-        panel.add(besttimeLale);
+        bestTimeLabel = initPanel(bestTimeLabel, "Best Time");
+        bestTimeLabel.setBounds(20, 180, 200, 20);
+        panel.add(bestTimeLabel);
 
-        totalmoveLable = new JLabel("Total Moves:");
-        totalmoveLable.setBackground(Color.black);
-        totalmoveLable.setForeground(Color.white);
-        totalmoveLable.setFont(new Font("Consalas", Font.BOLD, 18));
-        totalmoveLable.setBounds(20, 230, 200, 20);
-        totalmoveLable.setOpaque(true);
-        panel.add(totalmoveLable);
+        totalMoveLabel = initPanel(totalMoveLabel, "Total move:");
+        totalMoveLabel.setBounds(20, 230, 200, 20);
+        panel.add(totalMoveLabel);
 
-        bestscoreLable = new JLabel("Highest Score:");
-        bestscoreLable.setBackground(Color.black);
-        bestscoreLable.setForeground(Color.white);
-        bestscoreLable.setFont(new Font("Consalas", Font.BOLD, 18));
-        bestscoreLable.setBounds(20, 280, 200, 20);
-        bestscoreLable.setOpaque(true);
-        panel.add(bestscoreLable);
+        bestScoreLabel = initPanel(bestTimeLabel, "Best Score:");
+        bestScoreLabel.setBounds(20, 280, 200, 20);
+        panel.add(bestScoreLabel);
 
         JButton button = new JButton("Back");
         button.setBackground(Color.red);
@@ -100,4 +75,12 @@ public class Statistics extends JFrame {
 
     }
 
+    private JLabel initPanel(JLabel label ,String name){
+        label = new JLabel(name);
+//        label.setBackground(Color.BLUE);
+        label.setForeground(Color.white);
+        label.setFont(new Font("Consalas", Font.BOLD, 20));
+//        label.setOpaque(true);
+        return label;
+    }
 }

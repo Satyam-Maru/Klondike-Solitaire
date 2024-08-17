@@ -36,28 +36,16 @@ public class LeaderBoard extends JFrame {
         bluePanel.setLayout(null);
         panel.add(bluePanel);
 
-        rankLabel = new JLabel("Rank");
-        rankLabel.setBackground(Color.BLUE);
-        rankLabel.setForeground(Color.white);
-        rankLabel.setFont(new Font("Consalas", Font.BOLD, 25));
+        rankLabel = initLabels(rankLabel, "Rank");
         rankLabel.setBounds(15, 3, 120, 28);
-        rankLabel.setOpaque(true);
         bluePanel.add(rankLabel);
 
-        userNameLabel = new JLabel("UserName");
-        userNameLabel.setBackground(Color.BLUE);
-        userNameLabel.setForeground(Color.white);
-        userNameLabel.setFont(new Font("Consalas", Font.BOLD, 25));
+        userNameLabel = initLabels(userNameLabel, "Username");
         userNameLabel.setBounds(150, 3, 180, 28);
-        userNameLabel.setOpaque(true);
         bluePanel.add(userNameLabel);
 
-        scoreLabel = new JLabel("Score");
-        scoreLabel.setBackground(Color.BLUE);
-        scoreLabel.setForeground(Color.white);
-        scoreLabel.setFont(new Font("Consalas", Font.BOLD, 25));
+        scoreLabel = initLabels(scoreLabel, "Score");
         scoreLabel.setBounds(345, 3, 150, 28);
-        scoreLabel.setOpaque(true);
         bluePanel.add(scoreLabel);
 
         JTable table = new JTable();
@@ -99,6 +87,17 @@ public class LeaderBoard extends JFrame {
         setVisible(true);
         setLayout(null);
 
+    }
+
+    private JLabel initLabels(JLabel label, String name){
+
+        label = new JLabel(name);
+        label.setBackground(Color.BLUE);
+        label.setForeground(Color.white);
+        label.setFont(new Font("Consalas", Font.BOLD, 25));
+        label.setOpaque(true);
+
+        return label;
     }
 
 }
