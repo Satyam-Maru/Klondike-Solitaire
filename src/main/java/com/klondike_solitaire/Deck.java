@@ -33,9 +33,10 @@ public class Deck extends Pile implements ActionListener {
         g2d.setStroke(new BasicStroke(5));
         g2d.setColor(Color.white);
         g2d.drawRect(0, 0, this.getWidth(), this.getHeight());
-
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
         if (!isEmpty()) {
-            g.drawImage(Card.getCardBack(), 0, 0, this.getWidth(), this.getHeight(), this);
+            g2d.drawImage(Card.getCardBack(), 0, 0, this.getWidth(), this.getHeight(), this);
             if (resetBtn != null) {
                 // resetBtn is created
                 this.remove(resetBtn);

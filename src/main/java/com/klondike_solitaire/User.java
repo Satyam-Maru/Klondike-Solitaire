@@ -6,18 +6,16 @@ import java.util.HashMap;
 
 public class User {
 
-    protected static String email;
-    protected static String password;
-    protected static int user_id;
-    static User current_user;
-    protected static int moves, score;
+    protected static String email, password;
+    protected static int user_id, moves, score;
+    protected static User current_user;
 
     // DS
     // -----------------------------------------------------------------------------
     protected static HashMap<String, String> users;
     // -----------------------------------------------------------------------------
 
-    // call this constructor if a new user sign up to ask store_name
+    // call this constructor if a new user sign up
     public User(String email, String password, int user_id) {
         User.email = email;
         User.password = password;

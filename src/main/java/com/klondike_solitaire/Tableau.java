@@ -1,9 +1,6 @@
 package com.klondike_solitaire;
 
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Stack;
@@ -37,7 +34,8 @@ public class Tableau extends Pile {
         g2d.drawLine(0, 0, this.getWidth(), 0);
         g2d.drawLine(0, 0, 0, 96);
         g2d.drawLine(this.getWidth() - 1, 0, this.getWidth() - 1, 96);
-
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
         g2d.setPaint(
                 new GradientPaint(36, 0,
                 new Color(255, 255, 255, 160), 36, 60,

@@ -204,6 +204,8 @@ public class Utility extends JPanel implements ActionListener, Runnable {
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
 
         ImageIcon img = new ImageIcon(
                 System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images\\green_background.jpg");
