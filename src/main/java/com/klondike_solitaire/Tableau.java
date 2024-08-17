@@ -128,7 +128,7 @@ public class Tableau extends Pile {
                     temp.getLast().currentPile = destination;
                 }
 
-                while (!temp.isEmpty()){
+                if (!temp.isEmpty()){
 
                     GamePanel.undo.push(temp.getFirst()); // for storing single cards
                     GamePanel.undo.peek().prevPile = temp.getFirst().prevPile;
@@ -147,7 +147,6 @@ public class Tableau extends Pile {
                             temp.removeFirst();
                         }
                         parentCardStack.push(multipleCardStack);
-                        break;
                     }
                 }
             }

@@ -12,7 +12,7 @@ public class LeaderBoard extends JFrame {
     JLabel rankLabel, userNameLabel, scoreLabel;
 
     static {
-        im = new ImageIcon("C:\\Klondike-Solitaire\\src\\main\\java\\com\\Images\\gp.png");
+        im = new ImageIcon( System.getProperty("user.dir") +"\\src\\main\\java\\com\\Images\\gp.png");
         img = im.getImage().getScaledInstance(440, 440, Image.SCALE_DEFAULT);
         im = new ImageIcon(img);
     }

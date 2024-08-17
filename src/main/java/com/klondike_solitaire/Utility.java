@@ -20,7 +20,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     static JLabel scoreLabel, scoreValueLabel, moveLabel, moveValueLabel, timeLabel, timeValueLabel;
     Thread thread;
     int sec = 0, min = 0;
-    private boolean showBack;
+    private int undoCounts = 0;
 
     Utility() {
         getButtons();
@@ -126,7 +126,8 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
         if (e.getSource() == undoBtn) {
 
-            if (!GamePanel.undo.isEmpty()) {
+            if (!GamePanel.undo.isEmpty() && undoCounts < 3) {
+                undoCounts++;
                 if (Pile.point - 20 <= 0) {
                     Pile.point = 0;
                     Utility.scoreValueLabel.setText(String.valueOf(Pile.point));
@@ -158,6 +159,10 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 prevPile.repaint();
                 currentPile.repaint();
                 System.out.println("check");
+
+                if(undoCounts == 2){
+                    undoBtn.setEnabled(false);
+                }
 
             }
         } else if (e.getSource() == resetBtn) {
