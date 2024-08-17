@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class User {
 
-    protected static String email, password;
+    protected static String username, password;
     protected static int user_id, moves, score;
     protected static User current_user;
 
@@ -16,15 +16,15 @@ public class User {
     // -----------------------------------------------------------------------------
 
     // call this constructor if a new user sign up
-    public User(String email, String password, int user_id) {
-        User.email = email;
+    public User(String username, String password, int user_id) {
+        User.username = username;
         User.password = password;
         User.user_id = user_id;
     }
 
-    // return current active user's email
-    protected static String getEmail(){
-        return email;
+    // return current active user's username
+    protected static String getUsername(){
+        return username;
     }
 
     // return current active user's password
@@ -39,13 +39,13 @@ public class User {
 
     protected static int fetchUserId(){
 
-        String query = "SELECT user_id FROM users WHERE user_email = ?";
+        String query = "SELECT user_id FROM users WHERE user_username = ?";
 
         try{
             // retrieving user_id of current active_user
             Database.prepareStatement(query);
-            // returns email from TextField directly
-            Database.pst.setString(1, Login.getEmail());
+            // returns username from TextField directly
+            Database.pst.setString(1, Login.getUsername());
 
             ResultSet rs = Database.pst.executeQuery();
 
@@ -65,7 +65,7 @@ public class User {
     // prepare list of total registered users
     static protected void getUsers(){
 
-        String query = "SELECT user_email, user_password FROM users";
+        String query = "SELECT user_username, user_password FROM users";
 
         try{
             // Storing the user's data into HashMap
@@ -77,10 +77,10 @@ public class User {
 
             while(rs.next()){
 
-                String email = rs.getString("user_email");
+                String username = rs.getString("user_username");
                 String password = rs.getString("user_password");
 
-                users.put(email, password);
+                users.put(username, password);
             }
 
         }catch (SQLException e){

@@ -28,12 +28,12 @@ public class Login extends JFrame implements ActionListener {
     static JTextField emailTxtF;
     JPasswordField passwordTxtF;
     JButton signUpBtn, signInBtn;
-    ImageIcon im = new ImageIcon("C:\\Klondike-Solitaire\\src\\main\\java\\com\\Images\\solitaire.png");
+    ImageIcon im = new ImageIcon( System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images\\solitaire.png");
 
     // For Email Validation
     // -----------------------------------------------------------------------------
-    private final String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
-    private final Pattern emailPattern = Pattern.compile(EMAIL_PATTERN);
+    private final String USERNAME_PATTERN = "^[\\S]{5,}$";
+    private final Pattern emailPattern = Pattern.compile(USERNAME_PATTERN);
     // -----------------------------------------------------------------------------
 
     // For Password Validation
@@ -61,7 +61,7 @@ public class Login extends JFrame implements ActionListener {
         this.setLayout(null); // managing the layout self
         this.setLocationRelativeTo(null); // sets the frame in center of the window
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.getContentPane().setBackground(Color.CYAN);
+        this.getContentPane().setBackground(Color.BLACK);
         this.add(mainPanel);
         this.add(imageLabel);
 
@@ -78,18 +78,11 @@ public class Login extends JFrame implements ActionListener {
     protected void initMainPanel() {
 
         mainPanel = new JPanel();
-        mainPanel.setBounds(170, 80, frameWidth - 170, 420);
+        mainPanel.setBounds(350, 80, frameWidth - 250, 420);
         mainPanel.setLayout(null);
-        mainPanel.setBackground(Color.CYAN);
-
-        // setting the stock register image
-        // stockImgLabel = new JLabel();
-        // stockImgLabel.setIcon(solitaireLogo);
-        // stockImgLabel.setBounds(-30, -9, 350, 440);
-        // mainPanel.add(stockImgLabel);
+        mainPanel.setBackground(Color.BLACK);
 
         solitaireImageLabel = new JLabel(solitaireLogo);
-        // solitaireImageLabel.setIcon(solitaireLogo);
         solitaireImageLabel.setBounds(-30, -9, 350, 440);
         mainPanel.add(solitaireImageLabel);
 
@@ -102,14 +95,14 @@ public class Login extends JFrame implements ActionListener {
     protected void setEmailPanel() {
 
         JLabel emailString = new JLabel();
-        emailString.setText("Email");
-        emailString.setBounds(380, 65, 80, 20);
+        emailString.setText("Username");
+        emailString.setBounds(250, 65, 110, 20);
         emailString.setFont(new Font("Consolas", Font.BOLD, 17));
         emailString.setForeground(Color.WHITE);
         mainPanel.add(emailString);
 
         emailTxtF = new JTextField();
-        emailTxtF.setBounds(380, 90, 240, 35);
+        emailTxtF.setBounds(250, 90, 240, 35);
         emailTxtF.setMargin(new Insets(4, 10, 0, 10));
         emailTxtF.setFont(new Font("Consolas", Font.PLAIN, 16));
         emailTxtF.setForeground(Color.WHITE);
@@ -122,13 +115,13 @@ public class Login extends JFrame implements ActionListener {
 
         JLabel passString = new JLabel();
         passString.setText("Password");
-        passString.setBounds(380, 150, 120, 20);
+        passString.setBounds(250, 150, 120, 20);
         passString.setFont(new Font("Consolas", Font.BOLD, 16));
         passString.setForeground(Color.WHITE);
         mainPanel.add(passString);
 
         passwordTxtF = new JPasswordField();
-        passwordTxtF.setBounds(380, 175, 240, 35);
+        passwordTxtF.setBounds(250, 175, 240, 35);
         passwordTxtF.setMargin(new Insets(2, 10, 0, 10));
         passwordTxtF.setBackground(new Color(27, 27, 27));
         passwordTxtF.setForeground(Color.WHITE);
@@ -136,12 +129,10 @@ public class Login extends JFrame implements ActionListener {
         mainPanel.add(passwordTxtF);
     }
 
-    // TO-DO apply DATA_REDUNDANCY (make a method that init default resetBtn
-    // settings).
     protected void setButtons() {
 
         signUpBtn = new JButton();
-        signUpBtn.setBounds(390, 300, 100, 32);
+        signUpBtn.setBounds(260, 300, 100, 32);
         signUpBtn.setText("Sign Up");
         signUpBtn.setMargin(new Insets(3, 5, 0, 5));
         signUpBtn.setFont(new Font("Consolas", Font.BOLD, 16));
@@ -152,7 +143,7 @@ public class Login extends JFrame implements ActionListener {
         mainPanel.add(signUpBtn);
 
         signInBtn = new JButton();
-        signInBtn.setBounds(500, 300, 100, 32);
+        signInBtn.setBounds(370, 300, 100, 32);
         signInBtn.setText("Sign In");
         signInBtn.setMargin(new Insets(3, 5, 0, 5));
         signInBtn.setFont(new Font("Consolas", Font.BOLD, 16));
@@ -171,10 +162,10 @@ public class Login extends JFrame implements ActionListener {
         if (e.getSource() == signUpBtn) {
 
             // checks for value returned from TextField And PasswordField
-            if (isValidEmail(getEmail()) && isValidPassword(getPassword())) {
+            if (isValidUsername(getUsername()) && isValidPassword(getPassword())) {
 
                 // User.users => users = HashMap
-                if (User.users.containsKey(getEmail())) {
+                if (User.users.containsKey(getUsername())) {
                     // will run if user is already signed up
                     warningLabel.setText("Already a user, please sign in.");
                     passwordWarner.setText("");
@@ -184,15 +175,20 @@ public class Login extends JFrame implements ActionListener {
                     try {
 
                         // Database Insertion
-                        String query = "INSERT INTO users (user_email, user_password) VAlUES (?, ?)";
+                        String query = "INSERT INTO users (user_username, user_password) VAlUES (?, ?)";
                         Database.prepareStatement(query);
 
-                        Database.pst.setString(1, getEmail()); // JTextField
+                        Database.pst.setString(1, getUsername()); // JTextField
                         Database.pst.setString(2, getPassword()); // JPasswordField
-
                         Database.pst.executeUpdate();
 
-                        User.current_user = new User(getEmail(), getPassword(), User.fetchUserId());
+                        User.current_user = new User(getUsername(), getPassword(), User.fetchUserId());
+
+                        query = "INSERT INTO statistics (user_id) VALUES (?)";
+                        Database.prepareStatement(query);
+                        Database.pst.setInt(1, User.getUserId());
+                        Database.pst.executeUpdate();
+
 
                     } catch (SQLException ex) {
                         System.out.println(ex.getMessage());
@@ -203,9 +199,9 @@ public class Login extends JFrame implements ActionListener {
                 }
             }
 
-            if (!isValidEmail(getEmail())) {
+            if (!isValidUsername(getUsername())) {
 
-                warningLabel.setText("Invalid Email.");
+                warningLabel.setText("Invalid Username.");
                 passwordWarner.setText("");
             } else if (!isValidPassword(getPassword())) {
                 warningLabel.setText("Invalid Password.");
@@ -213,16 +209,16 @@ public class Login extends JFrame implements ActionListener {
             }
 
         } else if (e.getSource() == signInBtn) {
-            // users.get(getEmail()) => returns password
-            if (User.users.containsKey(getEmail()) && User.users.get(getEmail()).equals(getPassword())) {
+            // users.get(getUsername()) => returns password
+            if (User.users.containsKey(getUsername()) && User.users.get(getUsername()).equals(getPassword())) {
 
-                User.current_user = new User(getEmail(), getPassword(), User.fetchUserId());
+                User.current_user = new User(getUsername(), getPassword(), User.fetchUserId());
 
                 this.setVisible(false);
                 Solitaire.solitaire = new Solitaire();
             } else {
                 passwordWarner.setText("");
-                warningLabel.setText("Invalid Email OR Password.");
+                warningLabel.setText("Invalid Username OR Password.");
             }
         }
     }
@@ -230,25 +226,25 @@ public class Login extends JFrame implements ActionListener {
     protected void initWarningLabel() {
 
         warningLabel = new JLabel();
-        warningLabel.setBounds(380, 230, 290, 20);
+        warningLabel.setBounds(250, 230, 290, 20);
         warningLabel.setFont(new Font("Consolas", Font.BOLD, 16));
         warningLabel.setForeground(Color.RED);
         mainPanel.add(warningLabel);
 
         passwordWarner = new JLabel();
-        passwordWarner.setBounds(380, 251, 400, 20);
+        passwordWarner.setBounds(250, 251, 400, 20);
         passwordWarner.setFont(new Font("Consolas", Font.BOLD, 16));
         passwordWarner.setForeground(Color.RED);
         mainPanel.add(passwordWarner);
     }
 
-    protected boolean isValidEmail(String email) {
+    protected boolean isValidUsername(String username) {
 
-        if (email == null) {
+        if (username == null) {
             return false;
         }
 
-        Matcher matcher = emailPattern.matcher(email);
+        Matcher matcher = emailPattern.matcher(username);
         return matcher.matches();
     }
 
@@ -267,8 +263,8 @@ public class Login extends JFrame implements ActionListener {
         imageLabel.setBounds(0, 50, 400, 400);
     }
 
-    // returns email from JTextField
-    protected static String getEmail() {
+    // returns username from JTextField
+    protected static String getUsername() {
         return emailTxtF.getText();
     }
 
