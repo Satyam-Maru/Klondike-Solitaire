@@ -11,6 +11,7 @@ public class Statistics extends JFrame {
 
     // private JButton back;
     protected JLabel statisticsLabel, gamePlayedLabel, gameWonLabel, bestTimeLabel, totalMoveLabel, bestScoreLabel;
+    protected JLabel gamePlayedValueLabel, gameWonValueLabel, bestTimeValueLabel, totalMoveValueLabel, bestScoreValueLabel;
     protected JPanel panel;
 
     public Statistics() {
@@ -28,7 +29,7 @@ public class Statistics extends JFrame {
         panel.add(statisticsPanel);
 
         statisticsLabel = initPanel(statisticsLabel, "STATISTICS");
-        statisticsLabel.setBounds(80, 5, 340, 34);
+        statisticsLabel.setBounds(115, 5, 340, 34);
         statisticsPanel.add(statisticsLabel);
 
         gamePlayedLabel = initPanel(gamePlayedLabel, "Game Played:");
@@ -50,6 +51,8 @@ public class Statistics extends JFrame {
         bestScoreLabel = initPanel(bestTimeLabel, "Best Score:");
         bestScoreLabel.setBounds(20, 280, 200, 20);
         panel.add(bestScoreLabel);
+
+        setScoreLabels();
 
         JButton button = new JButton("Back");
         button.setBackground(Color.red);
@@ -77,10 +80,36 @@ public class Statistics extends JFrame {
 
     private JLabel initPanel(JLabel label ,String name){
         label = new JLabel(name);
-//        label.setBackground(Color.BLUE);
         label.setForeground(Color.white);
         label.setFont(new Font("Consalas", Font.BOLD, 20));
-//        label.setOpaque(true);
         return label;
+    }
+
+    private void setScoreLabels(){
+
+        gamePlayedValueLabel = initPanel(gamePlayedValueLabel, String.valueOf(User.game_played));
+        gamePlayedValueLabel.setBounds(280, 80, 60, 20);
+        panel.add(gamePlayedValueLabel);
+
+        gameWonValueLabel = initPanel(gameWonValueLabel ,String.valueOf(User.game_won));
+        gameWonValueLabel.setBounds(280, 130, 60, 20);
+        panel.add(gameWonValueLabel);
+
+        if(User.best_time == null)
+            bestTimeValueLabel = initPanel(bestTimeValueLabel, "00:00");
+        else
+            bestTimeValueLabel = initPanel(bestTimeValueLabel, User.best_time);
+
+        bestTimeValueLabel.setBounds(262, 180, 60, 20);
+        panel.add(bestTimeValueLabel);
+
+        totalMoveValueLabel = initPanel(totalMoveValueLabel, String.valueOf(User.moves));
+        totalMoveValueLabel.setBounds(280, 230, 60, 20);
+        panel.add(totalMoveValueLabel);
+
+        bestScoreValueLabel = initPanel(bestScoreValueLabel, String.valueOf(User.best_score));
+        bestScoreValueLabel.setBounds(280, 280, 60, 20);
+        panel.add(bestScoreValueLabel);
+
     }
 }

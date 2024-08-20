@@ -12,6 +12,7 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -68,7 +69,7 @@ public class Login extends JFrame implements ActionListener {
         // TO-DO apply threading in Database.getConnection()
         try {
             Database.getConnection();
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             System.out.println(e.getMessage());
         }
 

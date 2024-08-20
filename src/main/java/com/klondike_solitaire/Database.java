@@ -13,20 +13,13 @@ public class Database {
 
     protected static Connection con = null;
 
-//    protected static String url = "jdbc:postgresql://aws-0-ap-south-1.pooler.supabase.com:6543/postgres";
-//
-//    protected static String user = "postgres.lkajgcwiqqdgsqwtwqqy";
-//
-//    protected static String pass = "Klondike_Solitaire";
-
-
-
     protected static PreparedStatement pst = null;
 
     public Database() throws FileNotFoundException {
     }
 
     protected static void getConnection() throws SQLException, IOException {
+
         FileReader fr = new FileReader(System.getProperty("user.dir") + "\\src\\main\\java\\com\\klondike_solitaire\\SupabaseData.txt");
         BufferedReader br=new BufferedReader(fr);
         String line=br.readLine();

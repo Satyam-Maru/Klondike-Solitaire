@@ -1,15 +1,19 @@
 package com.klondike_solitaire;
 
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 public class LeaderBoard extends JFrame {
     JPanel panel;
     private static ImageIcon im;
     private static Image img;
-    JLabel rankLabel, userNameLabel, scoreLabel;
+    private JLabel rankLabel, userNameLabel, scoreLabel;
+//    private JLabel[][] rankLabel;
 
     static {
         im = new ImageIcon( System.getProperty("user.dir") +"\\src\\main\\java\\com\\Images\\gp.png");
@@ -25,7 +29,7 @@ public class LeaderBoard extends JFrame {
 
         panel = new JPanel();
         panel.setBounds(0, 0, 440, 440);
-        panel.setBackground(Color.black);
+        panel.setBackground(Color.BLACK);
         panel.setLayout(null);
 
         add(panel);
@@ -47,24 +51,6 @@ public class LeaderBoard extends JFrame {
         scoreLabel = initLabels(scoreLabel, "Score");
         scoreLabel.setBounds(345, 3, 150, 28);
         bluePanel.add(scoreLabel);
-
-        JTable table = new JTable();
-        table.setBackground(Color.black);
-        table.setBounds(0, 40, 450, 350);
-        table.setFont(new Font("SERIF", Font.PLAIN, 18));
-        panel.add(table);
-        try {
-
-            // table.setModel(DbUtils.resultSetToTableModel());
-            // open comment and rs object in method
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            e.printStackTrace();
-        }
-//        JScrollPane scrollPane = new JScrollPane(table);
-//
-//        // scrollPane.setLayout(null);
-//        add(scrollPane);
 
         JButton button = new JButton("Back");
         button.setBackground(Color.red);
@@ -98,6 +84,19 @@ public class LeaderBoard extends JFrame {
         label.setOpaque(true);
 
         return label;
+    }
+
+    private void setRankLabels(){
+
+//        rankLabel = new JLabel[4][3];
+
+        int arr[][] = new int[3][4];
+
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 3; j++){
+
+            }
+        }
     }
 
 }
