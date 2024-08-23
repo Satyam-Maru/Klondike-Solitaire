@@ -4,9 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class FeedBack extends JFrame {
-    private JTextArea feedbackArea;
     private JPanel panelMain;
     private JLabel feedback;
     private JTextArea textArea;
@@ -23,6 +25,15 @@ public class FeedBack extends JFrame {
             JOptionPane.showMessageDialog(this, "Feedback cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             System.out.println("Feedback received: " + feedback);
+
+            try{
+                File f = new File(System.getProperty("user.dir") + "\\src\\main\\java\\com\\klondike_solitaire\\FeedbackText.txt");
+                FileWriter fw = new FileWriter(f, true);
+                fw.write(feedback + '\n');
+                fw.close();
+            }catch(IOException e){
+                System.out.println(e.getMessage());
+            }
 
             textArea.setText("");
 

@@ -13,7 +13,7 @@ public class Card {
     private Image im;
     private int value;
     private String suit;
-    private boolean faceUp;
+    protected boolean faceUp;
     private Colour colour;
     protected Pile prevPile, currentPile;
     protected boolean undoContainsMoreThanOneCard;

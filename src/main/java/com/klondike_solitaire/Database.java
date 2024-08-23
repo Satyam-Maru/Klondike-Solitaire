@@ -15,9 +15,6 @@ public class Database {
 
     protected static PreparedStatement pst = null;
 
-    public Database() throws FileNotFoundException {
-    }
-
     protected static void getConnection() throws SQLException, IOException {
 
         FileReader fr = new FileReader(System.getProperty("user.dir") + "\\src\\main\\java\\com\\klondike_solitaire\\SupabaseData.txt");

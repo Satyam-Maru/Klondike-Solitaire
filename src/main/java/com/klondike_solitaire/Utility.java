@@ -138,6 +138,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 Pile prevPile = GamePanel.undo.peek().prevPile;
                 Pile currentPile = GamePanel.undo.peek().currentPile;
                 Card checker = GamePanel.undo.peek();
+                prevPile.topCard().faceUp = false;
                 prevPile.push(GamePanel.undo.pop());
                 currentPile.pop();
 
