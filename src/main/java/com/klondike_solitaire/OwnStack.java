@@ -1,13 +1,13 @@
 package com.klondike_solitaire;
 
-public class Stack {
+public class OwnStack {
     private Card[] stackArray;
     private int top;
     private int maxSize;
 
-    public Stack(int size) {
-        this.maxSize = size;
+    public OwnStack() {
         this.stackArray = new Card[52];
+        this.maxSize = 52;
         this.top = -1; // Stack is initially empty
     }
 

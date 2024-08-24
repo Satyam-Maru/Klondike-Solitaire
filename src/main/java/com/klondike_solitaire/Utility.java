@@ -182,7 +182,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
     @Override
     public void run() {
         try {
-            while (min != 60) {
+            while (min != 30) {
 
                 if (sec == 60) {
                     sec = 0;
@@ -195,6 +195,11 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
                 Thread.sleep(1000);
             }
+            Solitaire.solitaire.dispose();
+            User.score = 0;
+            User.moves = 0;
+            User.updateGamePlayed();
+            Solitaire.solitaire = new Solitaire();
             System.out.println("Thread completed!!!");
         } catch (InterruptedException e) {
             System.out.println(e);

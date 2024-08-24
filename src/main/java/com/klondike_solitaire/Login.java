@@ -78,7 +78,7 @@ public class Login extends JFrame implements ActionListener {
     protected void initMainPanel() {
 
         mainPanel = new JPanel();
-        mainPanel.setBounds(350, 80, frameWidth - 250, 420);
+        mainPanel.setBounds(450, 80, frameWidth - 250, 420);
         mainPanel.setLayout(null);
         mainPanel.setBackground(Color.BLACK);
 
@@ -96,13 +96,13 @@ public class Login extends JFrame implements ActionListener {
 
         JLabel emailString = new JLabel();
         emailString.setText("Username");
-        emailString.setBounds(250, 65, 110, 20);
+        emailString.setBounds(150, 65, 110, 20);
         emailString.setFont(new Font("Consolas", Font.BOLD, 17));
         emailString.setForeground(Color.WHITE);
         mainPanel.add(emailString);
 
         emailTxtF = new JTextField();
-        emailTxtF.setBounds(250, 90, 240, 35);
+        emailTxtF.setBounds(150, 90, 240, 35);
         emailTxtF.setMargin(new Insets(4, 10, 0, 10));
         emailTxtF.setFont(new Font("Consolas", Font.PLAIN, 16));
         emailTxtF.setForeground(Color.WHITE);
@@ -115,13 +115,13 @@ public class Login extends JFrame implements ActionListener {
 
         JLabel passString = new JLabel();
         passString.setText("Password");
-        passString.setBounds(250, 150, 120, 20);
+        passString.setBounds(150, 150, 120, 20);
         passString.setFont(new Font("Consolas", Font.BOLD, 16));
         passString.setForeground(Color.WHITE);
         mainPanel.add(passString);
 
         passwordTxtF = new JPasswordField();
-        passwordTxtF.setBounds(250, 175, 240, 35);
+        passwordTxtF.setBounds(150, 175, 240, 35);
         passwordTxtF.setMargin(new Insets(2, 10, 0, 10));
         passwordTxtF.setBackground(new Color(27, 27, 27));
         passwordTxtF.setForeground(Color.WHITE);
@@ -132,7 +132,7 @@ public class Login extends JFrame implements ActionListener {
     protected void setButtons() {
 
         signUpBtn = new JButton();
-        signUpBtn.setBounds(260, 300, 100, 32);
+        signUpBtn.setBounds(160, 300, 100, 32);
         signUpBtn.setText("Sign Up");
         signUpBtn.setMargin(new Insets(3, 5, 0, 5));
         signUpBtn.setFont(new Font("Consolas", Font.BOLD, 16));
@@ -143,7 +143,7 @@ public class Login extends JFrame implements ActionListener {
         mainPanel.add(signUpBtn);
 
         signInBtn = new JButton();
-        signInBtn.setBounds(370, 300, 100, 32);
+        signInBtn.setBounds(270, 300, 100, 32);
         signInBtn.setText("Sign In");
         signInBtn.setMargin(new Insets(3, 5, 0, 5));
         signInBtn.setFont(new Font("Consolas", Font.BOLD, 16));
@@ -265,7 +265,7 @@ public class Login extends JFrame implements ActionListener {
 
     void image() {
         imageLabel = new JLabel(im);
-        imageLabel.setBounds(0, 50, 400, 400);
+        imageLabel.setBounds(50, 50, 400, 400);
     }
 
     // returns username from JTextField
