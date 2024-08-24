@@ -34,7 +34,7 @@ public class Login extends JFrame implements ActionListener {
     // For Email Validation
     // -----------------------------------------------------------------------------
     private final String USERNAME_PATTERN = "^[\\S]{5,}$";
-    private final Pattern emailPattern = Pattern.compile(USERNAME_PATTERN);
+    private final Pattern usernamePattern = Pattern.compile(USERNAME_PATTERN);
     // -----------------------------------------------------------------------------
 
     // For Password Validation
@@ -249,7 +249,7 @@ public class Login extends JFrame implements ActionListener {
             return false;
         }
 
-        Matcher matcher = emailPattern.matcher(username);
+        Matcher matcher = usernamePattern.matcher(username);
         return matcher.matches();
     }
 
