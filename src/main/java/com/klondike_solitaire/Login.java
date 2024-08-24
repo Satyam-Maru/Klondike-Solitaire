@@ -29,7 +29,7 @@ public class Login extends JFrame implements ActionListener {
     static JTextField emailTxtF;
     JPasswordField passwordTxtF;
     JButton signUpBtn, signInBtn;
-    ImageIcon im = new ImageIcon( System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images\\solitaire.png");
+    ImageIcon im = new ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\com\\Images\\solitaire.png");
 
     // For Email Validation
     // -----------------------------------------------------------------------------
@@ -72,7 +72,6 @@ public class Login extends JFrame implements ActionListener {
         } catch (SQLException | IOException e) {
             System.out.println(e.getMessage());
         }
-
         this.setVisible(true);
     }
 

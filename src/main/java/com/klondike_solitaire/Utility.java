@@ -126,7 +126,7 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
         if (e.getSource() == undoBtn) {
 
-            if (!GamePanel.undo.isEmpty() && undoCounts < 3) {
+            if (!GamePanel.undo.isEmpty() && undoCounts < 4) {
                 undoCounts++;
                 if (User.score > 20) {
                     User.score -= 20;
@@ -141,9 +141,9 @@ public class Utility extends JPanel implements ActionListener, Runnable {
                 prevPile.push(GamePanel.undo.pop());
                 currentPile.pop();
 
-                if(checker.undoContainsMoreThanOneCard && !Tableau.parentCardStack.isEmpty()){
+                if (checker.undoContainsMoreThanOneCard && !Tableau.parentCardStack.isEmpty()) {
                     ArrayDeque<Card> deque = (ArrayDeque<Card>) Tableau.parentCardStack.pop();
-                    while (!deque.isEmpty()){
+                    while (!deque.isEmpty()) {
                         prevPile = deque.getFirst().prevPile;
                         currentPile = deque.getFirst().currentPile;
 
@@ -157,9 +157,9 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
                 prevPile.repaint();
                 currentPile.repaint();
-//                System.out.println("check");
+                // System.out.println("check");
 
-                if(undoCounts == 2){
+                if (undoCounts == 3) {
                     undoBtn.setEnabled(false);
                 }
 
@@ -217,9 +217,9 @@ public class Utility extends JPanel implements ActionListener, Runnable {
 
         if (GamePanel.getWastePile().cards.isEmpty() && GamePanel.getDeck().cards.isEmpty()) {
 
-            for (Tableau tableau: GamePanel.getTableau()){
-                for(int i = 0; i < tableau.cards.size(); i++){
-                    if(!tableau.cards.get(i).isFaceUp()){
+            for (Tableau tableau : GamePanel.getTableau()) {
+                for (int i = 0; i < tableau.cards.size(); i++) {
+                    if (!tableau.cards.get(i).isFaceUp()) {
                         return false;
                     }
                 }
