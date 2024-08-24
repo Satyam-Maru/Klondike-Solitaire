@@ -5,9 +5,9 @@ public class OwnStack {
     private int top;
     private int maxSize;
 
-    public OwnStack() {
+    public OwnStack(int size) {
+        this.maxSize = size;
         this.stackArray = new Card[52];
-        this.maxSize = 52;
         this.top = -1; // Stack is initially empty
     }
 

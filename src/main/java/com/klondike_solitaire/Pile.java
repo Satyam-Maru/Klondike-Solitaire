@@ -9,12 +9,11 @@ public class Pile extends JPanel {
     // protected int x, y;
     protected Stack<Card> cards;
     protected static Stack<Card> moves;
-    OwnStack card;
+    OwnStack card; // not working because Shuffle requires List object
 
     public Pile(int x, int y) {
         super.setLocation(x, y);
         cards = new Stack<>();
-//        card = new OwnStack();
     }
 
     public Card topCard() {
